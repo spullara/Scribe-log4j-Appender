@@ -5,21 +5,18 @@
  */
 package com.facebook.fb303;
 
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Set;
-import java.util.HashSet;
-import java.util.Collections;
-import java.util.BitSet;
-import java.util.Arrays;
+import org.apache.thrift.*;
+import org.apache.thrift.meta_data.FieldMetaData;
+import org.apache.thrift.meta_data.FieldValueMetaData;
+import org.apache.thrift.meta_data.MapMetaData;
+import org.apache.thrift.protocol.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.apache.thrift.*;
-import org.apache.thrift.meta_data.*;
-import org.apache.thrift.protocol.*;
+import java.util.BitSet;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FacebookService {
 
@@ -52,18 +49,18 @@ public class FacebookService {
     /**
      * Gets the counters for this service
      */
-    public Map<String,Long> getCounters() throws TException;
+    public Map<String, Long> getCounters() throws TException;
 
     /**
      * Gets the value of a single counter
-     * 
+     *
      * @param key
      */
     public long getCounter(String key) throws TException;
 
     /**
      * Sets an option
-     * 
+     *
      * @param key
      * @param value
      */
@@ -71,7 +68,7 @@ public class FacebookService {
 
     /**
      * Gets an option
-     * 
+     *
      * @param key
      */
     public String getOption(String key) throws TException;
@@ -79,12 +76,12 @@ public class FacebookService {
     /**
      * Gets all options
      */
-    public Map<String,String> getOptions() throws TException;
+    public Map<String, String> getOptions() throws TException;
 
     /**
      * Returns a CPU profile over the given time interval (client and server
      * must agree on the profile format).
-     * 
+     *
      * @param profileDurationInSec
      */
     public String getCpuProfile(int profileDurationInSec) throws TException;
@@ -107,13 +104,11 @@ public class FacebookService {
   }
 
   public static class Client implements Iface {
-    public Client(TProtocol prot)
-    {
+    public Client(TProtocol prot) {
       this(prot, prot);
     }
 
-    public Client(TProtocol iprot, TProtocol oprot)
-    {
+    public Client(TProtocol iprot, TProtocol oprot) {
       iprot_ = iprot;
       oprot_ = oprot;
     }
@@ -123,24 +118,20 @@ public class FacebookService {
 
     protected int seqid_;
 
-    public TProtocol getInputProtocol()
-    {
+    public TProtocol getInputProtocol() {
       return this.iprot_;
     }
 
-    public TProtocol getOutputProtocol()
-    {
+    public TProtocol getOutputProtocol() {
       return this.oprot_;
     }
 
-    public String getName() throws TException
-    {
+    public String getName() throws TException {
       send_getName();
       return recv_getName();
     }
 
-    public void send_getName() throws TException
-    {
+    public void send_getName() throws TException {
       oprot_.writeMessageBegin(new TMessage("getName", TMessageType.CALL, seqid_));
       getName_args args = new getName_args();
       args.write(oprot_);
@@ -148,8 +139,7 @@ public class FacebookService {
       oprot_.getTransport().flush();
     }
 
-    public String recv_getName() throws TException
-    {
+    public String recv_getName() throws TException {
       TMessage msg = iprot_.readMessageBegin();
       if (msg.type == TMessageType.EXCEPTION) {
         TApplicationException x = TApplicationException.read(iprot_);
@@ -165,14 +155,12 @@ public class FacebookService {
       throw new TApplicationException(TApplicationException.MISSING_RESULT, "getName failed: unknown result");
     }
 
-    public String getVersion() throws TException
-    {
+    public String getVersion() throws TException {
       send_getVersion();
       return recv_getVersion();
     }
 
-    public void send_getVersion() throws TException
-    {
+    public void send_getVersion() throws TException {
       oprot_.writeMessageBegin(new TMessage("getVersion", TMessageType.CALL, seqid_));
       getVersion_args args = new getVersion_args();
       args.write(oprot_);
@@ -180,8 +168,7 @@ public class FacebookService {
       oprot_.getTransport().flush();
     }
 
-    public String recv_getVersion() throws TException
-    {
+    public String recv_getVersion() throws TException {
       TMessage msg = iprot_.readMessageBegin();
       if (msg.type == TMessageType.EXCEPTION) {
         TApplicationException x = TApplicationException.read(iprot_);
@@ -197,14 +184,12 @@ public class FacebookService {
       throw new TApplicationException(TApplicationException.MISSING_RESULT, "getVersion failed: unknown result");
     }
 
-    public int getStatus() throws TException
-    {
+    public int getStatus() throws TException {
       send_getStatus();
       return recv_getStatus();
     }
 
-    public void send_getStatus() throws TException
-    {
+    public void send_getStatus() throws TException {
       oprot_.writeMessageBegin(new TMessage("getStatus", TMessageType.CALL, seqid_));
       getStatus_args args = new getStatus_args();
       args.write(oprot_);
@@ -212,8 +197,7 @@ public class FacebookService {
       oprot_.getTransport().flush();
     }
 
-    public int recv_getStatus() throws TException
-    {
+    public int recv_getStatus() throws TException {
       TMessage msg = iprot_.readMessageBegin();
       if (msg.type == TMessageType.EXCEPTION) {
         TApplicationException x = TApplicationException.read(iprot_);
@@ -229,14 +213,12 @@ public class FacebookService {
       throw new TApplicationException(TApplicationException.MISSING_RESULT, "getStatus failed: unknown result");
     }
 
-    public String getStatusDetails() throws TException
-    {
+    public String getStatusDetails() throws TException {
       send_getStatusDetails();
       return recv_getStatusDetails();
     }
 
-    public void send_getStatusDetails() throws TException
-    {
+    public void send_getStatusDetails() throws TException {
       oprot_.writeMessageBegin(new TMessage("getStatusDetails", TMessageType.CALL, seqid_));
       getStatusDetails_args args = new getStatusDetails_args();
       args.write(oprot_);
@@ -244,8 +226,7 @@ public class FacebookService {
       oprot_.getTransport().flush();
     }
 
-    public String recv_getStatusDetails() throws TException
-    {
+    public String recv_getStatusDetails() throws TException {
       TMessage msg = iprot_.readMessageBegin();
       if (msg.type == TMessageType.EXCEPTION) {
         TApplicationException x = TApplicationException.read(iprot_);
@@ -261,14 +242,12 @@ public class FacebookService {
       throw new TApplicationException(TApplicationException.MISSING_RESULT, "getStatusDetails failed: unknown result");
     }
 
-    public Map<String,Long> getCounters() throws TException
-    {
+    public Map<String, Long> getCounters() throws TException {
       send_getCounters();
       return recv_getCounters();
     }
 
-    public void send_getCounters() throws TException
-    {
+    public void send_getCounters() throws TException {
       oprot_.writeMessageBegin(new TMessage("getCounters", TMessageType.CALL, seqid_));
       getCounters_args args = new getCounters_args();
       args.write(oprot_);
@@ -276,8 +255,7 @@ public class FacebookService {
       oprot_.getTransport().flush();
     }
 
-    public Map<String,Long> recv_getCounters() throws TException
-    {
+    public Map<String, Long> recv_getCounters() throws TException {
       TMessage msg = iprot_.readMessageBegin();
       if (msg.type == TMessageType.EXCEPTION) {
         TApplicationException x = TApplicationException.read(iprot_);
@@ -293,14 +271,12 @@ public class FacebookService {
       throw new TApplicationException(TApplicationException.MISSING_RESULT, "getCounters failed: unknown result");
     }
 
-    public long getCounter(String key) throws TException
-    {
+    public long getCounter(String key) throws TException {
       send_getCounter(key);
       return recv_getCounter();
     }
 
-    public void send_getCounter(String key) throws TException
-    {
+    public void send_getCounter(String key) throws TException {
       oprot_.writeMessageBegin(new TMessage("getCounter", TMessageType.CALL, seqid_));
       getCounter_args args = new getCounter_args();
       args.key = key;
@@ -309,8 +285,7 @@ public class FacebookService {
       oprot_.getTransport().flush();
     }
 
-    public long recv_getCounter() throws TException
-    {
+    public long recv_getCounter() throws TException {
       TMessage msg = iprot_.readMessageBegin();
       if (msg.type == TMessageType.EXCEPTION) {
         TApplicationException x = TApplicationException.read(iprot_);
@@ -326,14 +301,12 @@ public class FacebookService {
       throw new TApplicationException(TApplicationException.MISSING_RESULT, "getCounter failed: unknown result");
     }
 
-    public void setOption(String key, String value) throws TException
-    {
+    public void setOption(String key, String value) throws TException {
       send_setOption(key, value);
       recv_setOption();
     }
 
-    public void send_setOption(String key, String value) throws TException
-    {
+    public void send_setOption(String key, String value) throws TException {
       oprot_.writeMessageBegin(new TMessage("setOption", TMessageType.CALL, seqid_));
       setOption_args args = new setOption_args();
       args.key = key;
@@ -343,8 +316,7 @@ public class FacebookService {
       oprot_.getTransport().flush();
     }
 
-    public void recv_setOption() throws TException
-    {
+    public void recv_setOption() throws TException {
       TMessage msg = iprot_.readMessageBegin();
       if (msg.type == TMessageType.EXCEPTION) {
         TApplicationException x = TApplicationException.read(iprot_);
@@ -357,14 +329,12 @@ public class FacebookService {
       return;
     }
 
-    public String getOption(String key) throws TException
-    {
+    public String getOption(String key) throws TException {
       send_getOption(key);
       return recv_getOption();
     }
 
-    public void send_getOption(String key) throws TException
-    {
+    public void send_getOption(String key) throws TException {
       oprot_.writeMessageBegin(new TMessage("getOption", TMessageType.CALL, seqid_));
       getOption_args args = new getOption_args();
       args.key = key;
@@ -373,8 +343,7 @@ public class FacebookService {
       oprot_.getTransport().flush();
     }
 
-    public String recv_getOption() throws TException
-    {
+    public String recv_getOption() throws TException {
       TMessage msg = iprot_.readMessageBegin();
       if (msg.type == TMessageType.EXCEPTION) {
         TApplicationException x = TApplicationException.read(iprot_);
@@ -390,14 +359,12 @@ public class FacebookService {
       throw new TApplicationException(TApplicationException.MISSING_RESULT, "getOption failed: unknown result");
     }
 
-    public Map<String,String> getOptions() throws TException
-    {
+    public Map<String, String> getOptions() throws TException {
       send_getOptions();
       return recv_getOptions();
     }
 
-    public void send_getOptions() throws TException
-    {
+    public void send_getOptions() throws TException {
       oprot_.writeMessageBegin(new TMessage("getOptions", TMessageType.CALL, seqid_));
       getOptions_args args = new getOptions_args();
       args.write(oprot_);
@@ -405,8 +372,7 @@ public class FacebookService {
       oprot_.getTransport().flush();
     }
 
-    public Map<String,String> recv_getOptions() throws TException
-    {
+    public Map<String, String> recv_getOptions() throws TException {
       TMessage msg = iprot_.readMessageBegin();
       if (msg.type == TMessageType.EXCEPTION) {
         TApplicationException x = TApplicationException.read(iprot_);
@@ -422,14 +388,12 @@ public class FacebookService {
       throw new TApplicationException(TApplicationException.MISSING_RESULT, "getOptions failed: unknown result");
     }
 
-    public String getCpuProfile(int profileDurationInSec) throws TException
-    {
+    public String getCpuProfile(int profileDurationInSec) throws TException {
       send_getCpuProfile(profileDurationInSec);
       return recv_getCpuProfile();
     }
 
-    public void send_getCpuProfile(int profileDurationInSec) throws TException
-    {
+    public void send_getCpuProfile(int profileDurationInSec) throws TException {
       oprot_.writeMessageBegin(new TMessage("getCpuProfile", TMessageType.CALL, seqid_));
       getCpuProfile_args args = new getCpuProfile_args();
       args.profileDurationInSec = profileDurationInSec;
@@ -438,8 +402,7 @@ public class FacebookService {
       oprot_.getTransport().flush();
     }
 
-    public String recv_getCpuProfile() throws TException
-    {
+    public String recv_getCpuProfile() throws TException {
       TMessage msg = iprot_.readMessageBegin();
       if (msg.type == TMessageType.EXCEPTION) {
         TApplicationException x = TApplicationException.read(iprot_);
@@ -455,14 +418,12 @@ public class FacebookService {
       throw new TApplicationException(TApplicationException.MISSING_RESULT, "getCpuProfile failed: unknown result");
     }
 
-    public long aliveSince() throws TException
-    {
+    public long aliveSince() throws TException {
       send_aliveSince();
       return recv_aliveSince();
     }
 
-    public void send_aliveSince() throws TException
-    {
+    public void send_aliveSince() throws TException {
       oprot_.writeMessageBegin(new TMessage("aliveSince", TMessageType.CALL, seqid_));
       aliveSince_args args = new aliveSince_args();
       args.write(oprot_);
@@ -470,8 +431,7 @@ public class FacebookService {
       oprot_.getTransport().flush();
     }
 
-    public long recv_aliveSince() throws TException
-    {
+    public long recv_aliveSince() throws TException {
       TMessage msg = iprot_.readMessageBegin();
       if (msg.type == TMessageType.EXCEPTION) {
         TApplicationException x = TApplicationException.read(iprot_);
@@ -487,13 +447,11 @@ public class FacebookService {
       throw new TApplicationException(TApplicationException.MISSING_RESULT, "aliveSince failed: unknown result");
     }
 
-    public void reinitialize() throws TException
-    {
+    public void reinitialize() throws TException {
       send_reinitialize();
     }
 
-    public void send_reinitialize() throws TException
-    {
+    public void send_reinitialize() throws TException {
       oprot_.writeMessageBegin(new TMessage("reinitialize", TMessageType.CALL, seqid_));
       reinitialize_args args = new reinitialize_args();
       args.write(oprot_);
@@ -501,13 +459,11 @@ public class FacebookService {
       oprot_.getTransport().flush();
     }
 
-    public void shutdown() throws TException
-    {
+    public void shutdown() throws TException {
       send_shutdown();
     }
 
-    public void send_shutdown() throws TException
-    {
+    public void send_shutdown() throws TException {
       oprot_.writeMessageBegin(new TMessage("shutdown", TMessageType.CALL, seqid_));
       shutdown_args args = new shutdown_args();
       args.write(oprot_);
@@ -516,10 +472,11 @@ public class FacebookService {
     }
 
   }
+
   public static class Processor implements TProcessor {
     private static final Logger LOGGER = LoggerFactory.getLogger(Processor.class.getName());
-    public Processor(Iface iface)
-    {
+
+    public Processor(Iface iface) {
       iface_ = iface;
       processMap_.put("getName", new getName());
       processMap_.put("getVersion", new getVersion());
@@ -541,16 +498,15 @@ public class FacebookService {
     }
 
     private Iface iface_;
-    protected final HashMap<String,ProcessFunction> processMap_ = new HashMap<String,ProcessFunction>();
+    protected final HashMap<String, ProcessFunction> processMap_ = new HashMap<String, ProcessFunction>();
 
-    public boolean process(TProtocol iprot, TProtocol oprot) throws TException
-    {
+    public boolean process(TProtocol iprot, TProtocol oprot) throws TException {
       TMessage msg = iprot.readMessageBegin();
       ProcessFunction fn = processMap_.get(msg.name);
       if (fn == null) {
         TProtocolUtil.skip(iprot, TType.STRUCT);
         iprot.readMessageEnd();
-        TApplicationException x = new TApplicationException(TApplicationException.UNKNOWN_METHOD, "Invalid method name: '"+msg.name+"'");
+        TApplicationException x = new TApplicationException(TApplicationException.UNKNOWN_METHOD, "Invalid method name: '" + msg.name + "'");
         oprot.writeMessageBegin(new TMessage(msg.name, TMessageType.EXCEPTION, msg.seqid));
         x.write(oprot);
         oprot.writeMessageEnd();
@@ -562,8 +518,7 @@ public class FacebookService {
     }
 
     private class getName implements ProcessFunction {
-      public void process(int seqid, TProtocol iprot, TProtocol oprot) throws TException
-      {
+      public void process(int seqid, TProtocol iprot, TProtocol oprot) throws TException {
         getName_args args = new getName_args();
         args.read(iprot);
         iprot.readMessageEnd();
@@ -578,8 +533,7 @@ public class FacebookService {
     }
 
     private class getVersion implements ProcessFunction {
-      public void process(int seqid, TProtocol iprot, TProtocol oprot) throws TException
-      {
+      public void process(int seqid, TProtocol iprot, TProtocol oprot) throws TException {
         getVersion_args args = new getVersion_args();
         args.read(iprot);
         iprot.readMessageEnd();
@@ -594,8 +548,7 @@ public class FacebookService {
     }
 
     private class getStatus implements ProcessFunction {
-      public void process(int seqid, TProtocol iprot, TProtocol oprot) throws TException
-      {
+      public void process(int seqid, TProtocol iprot, TProtocol oprot) throws TException {
         getStatus_args args = new getStatus_args();
         args.read(iprot);
         iprot.readMessageEnd();
@@ -611,8 +564,7 @@ public class FacebookService {
     }
 
     private class getStatusDetails implements ProcessFunction {
-      public void process(int seqid, TProtocol iprot, TProtocol oprot) throws TException
-      {
+      public void process(int seqid, TProtocol iprot, TProtocol oprot) throws TException {
         getStatusDetails_args args = new getStatusDetails_args();
         args.read(iprot);
         iprot.readMessageEnd();
@@ -627,8 +579,7 @@ public class FacebookService {
     }
 
     private class getCounters implements ProcessFunction {
-      public void process(int seqid, TProtocol iprot, TProtocol oprot) throws TException
-      {
+      public void process(int seqid, TProtocol iprot, TProtocol oprot) throws TException {
         getCounters_args args = new getCounters_args();
         args.read(iprot);
         iprot.readMessageEnd();
@@ -643,8 +594,7 @@ public class FacebookService {
     }
 
     private class getCounter implements ProcessFunction {
-      public void process(int seqid, TProtocol iprot, TProtocol oprot) throws TException
-      {
+      public void process(int seqid, TProtocol iprot, TProtocol oprot) throws TException {
         getCounter_args args = new getCounter_args();
         args.read(iprot);
         iprot.readMessageEnd();
@@ -660,8 +610,7 @@ public class FacebookService {
     }
 
     private class setOption implements ProcessFunction {
-      public void process(int seqid, TProtocol iprot, TProtocol oprot) throws TException
-      {
+      public void process(int seqid, TProtocol iprot, TProtocol oprot) throws TException {
         setOption_args args = new setOption_args();
         args.read(iprot);
         iprot.readMessageEnd();
@@ -676,8 +625,7 @@ public class FacebookService {
     }
 
     private class getOption implements ProcessFunction {
-      public void process(int seqid, TProtocol iprot, TProtocol oprot) throws TException
-      {
+      public void process(int seqid, TProtocol iprot, TProtocol oprot) throws TException {
         getOption_args args = new getOption_args();
         args.read(iprot);
         iprot.readMessageEnd();
@@ -692,8 +640,7 @@ public class FacebookService {
     }
 
     private class getOptions implements ProcessFunction {
-      public void process(int seqid, TProtocol iprot, TProtocol oprot) throws TException
-      {
+      public void process(int seqid, TProtocol iprot, TProtocol oprot) throws TException {
         getOptions_args args = new getOptions_args();
         args.read(iprot);
         iprot.readMessageEnd();
@@ -708,8 +655,7 @@ public class FacebookService {
     }
 
     private class getCpuProfile implements ProcessFunction {
-      public void process(int seqid, TProtocol iprot, TProtocol oprot) throws TException
-      {
+      public void process(int seqid, TProtocol iprot, TProtocol oprot) throws TException {
         getCpuProfile_args args = new getCpuProfile_args();
         args.read(iprot);
         iprot.readMessageEnd();
@@ -724,8 +670,7 @@ public class FacebookService {
     }
 
     private class aliveSince implements ProcessFunction {
-      public void process(int seqid, TProtocol iprot, TProtocol oprot) throws TException
-      {
+      public void process(int seqid, TProtocol iprot, TProtocol oprot) throws TException {
         aliveSince_args args = new aliveSince_args();
         args.read(iprot);
         iprot.readMessageEnd();
@@ -741,8 +686,7 @@ public class FacebookService {
     }
 
     private class reinitialize implements ProcessFunction {
-      public void process(int seqid, TProtocol iprot, TProtocol oprot) throws TException
-      {
+      public void process(int seqid, TProtocol iprot, TProtocol oprot) throws TException {
         reinitialize_args args = new reinitialize_args();
         args.read(iprot);
         iprot.readMessageEnd();
@@ -752,8 +696,7 @@ public class FacebookService {
     }
 
     private class shutdown implements ProcessFunction {
-      public void process(int seqid, TProtocol iprot, TProtocol oprot) throws TException
-      {
+      public void process(int seqid, TProtocol iprot, TProtocol oprot) throws TException {
         shutdown_args args = new shutdown_args();
         args.read(iprot);
         iprot.readMessageEnd();
@@ -764,7 +707,7 @@ public class FacebookService {
 
   }
 
-  public static class getName_args implements TBase, java.io.Serializable, Cloneable, Comparable<getName_args>   {
+  public static class getName_args implements TBase, java.io.Serializable, Cloneable, Comparable<getName_args> {
     private static final TStruct STRUCT_DESC = new TStruct("getName_args");
 
     public static final Map<Integer, FieldMetaData> metaDataMap = Collections.unmodifiableMap(new HashMap<Integer, FieldMetaData>() {{
@@ -794,23 +737,24 @@ public class FacebookService {
 
     public void setFieldValue(int fieldID, Object value) {
       switch (fieldID) {
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     public Object getFieldValue(int fieldID) {
       switch (fieldID) {
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     // Returns true if field corresponding to fieldID is set (has been asigned a value) and false otherwise
+
     public boolean isSet(int fieldID) {
       switch (fieldID) {
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
@@ -819,7 +763,7 @@ public class FacebookService {
       if (that == null)
         return false;
       if (that instanceof getName_args)
-        return this.equals((getName_args)that);
+        return this.equals((getName_args) that);
       return false;
     }
 
@@ -841,7 +785,7 @@ public class FacebookService {
       }
 
       int lastComparison = 0;
-      getName_args typedOther = (getName_args)other;
+      getName_args typedOther = (getName_args) other;
 
       return 0;
     }
@@ -849,14 +793,12 @@ public class FacebookService {
     public void read(TProtocol iprot) throws TException {
       TField field;
       iprot.readStructBegin();
-      while (true)
-      {
+      while (true) {
         field = iprot.readFieldBegin();
-        if (field.type == TType.STOP) { 
+        if (field.type == TType.STOP) {
           break;
         }
-        switch (field.id)
-        {
+        switch (field.id) {
           default:
             TProtocolUtil.skip(iprot, field.type);
             break;
@@ -894,9 +836,9 @@ public class FacebookService {
 
   }
 
-  public static class getName_result implements TBase, java.io.Serializable, Cloneable, Comparable<getName_result>   {
+  public static class getName_result implements TBase, java.io.Serializable, Cloneable, Comparable<getName_result> {
     private static final TStruct STRUCT_DESC = new TStruct("getName_result");
-    private static final TField SUCCESS_FIELD_DESC = new TField("success", TType.STRING, (short)0);
+    private static final TField SUCCESS_FIELD_DESC = new TField("success", TType.STRING, (short) 0);
 
     public String success;
     public static final int SUCCESS = 0;
@@ -904,7 +846,7 @@ public class FacebookService {
     // isset id assignments
 
     public static final Map<Integer, FieldMetaData> metaDataMap = Collections.unmodifiableMap(new HashMap<Integer, FieldMetaData>() {{
-      put(SUCCESS, new FieldMetaData("success", TFieldRequirementType.DEFAULT, 
+      put(SUCCESS, new FieldMetaData("success", TFieldRequirementType.DEFAULT,
           new FieldValueMetaData(TType.STRING)));
     }});
 
@@ -916,8 +858,7 @@ public class FacebookService {
     }
 
     public getName_result(
-      String success)
-    {
+        String success) {
       this();
       this.success = success;
     }
@@ -954,6 +895,7 @@ public class FacebookService {
     }
 
     // Returns true if field success is set (has been asigned a value) and false otherwise
+
     public boolean isSetSuccess() {
       return this.success != null;
     }
@@ -966,36 +908,37 @@ public class FacebookService {
 
     public void setFieldValue(int fieldID, Object value) {
       switch (fieldID) {
-      case SUCCESS:
-        if (value == null) {
-          unsetSuccess();
-        } else {
-          setSuccess((String)value);
-        }
-        break;
+        case SUCCESS:
+          if (value == null) {
+            unsetSuccess();
+          } else {
+            setSuccess((String) value);
+          }
+          break;
 
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     public Object getFieldValue(int fieldID) {
       switch (fieldID) {
-      case SUCCESS:
-        return getSuccess();
+        case SUCCESS:
+          return getSuccess();
 
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     // Returns true if field corresponding to fieldID is set (has been asigned a value) and false otherwise
+
     public boolean isSet(int fieldID) {
       switch (fieldID) {
-      case SUCCESS:
-        return isSetSuccess();
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        case SUCCESS:
+          return isSetSuccess();
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
@@ -1004,7 +947,7 @@ public class FacebookService {
       if (that == null)
         return false;
       if (that instanceof getName_result)
-        return this.equals((getName_result)that);
+        return this.equals((getName_result) that);
       return false;
     }
 
@@ -1035,7 +978,7 @@ public class FacebookService {
       }
 
       int lastComparison = 0;
-      getName_result typedOther = (getName_result)other;
+      getName_result typedOther = (getName_result) other;
 
       lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(isSetSuccess());
       if (lastComparison != 0) {
@@ -1051,18 +994,16 @@ public class FacebookService {
     public void read(TProtocol iprot) throws TException {
       TField field;
       iprot.readStructBegin();
-      while (true)
-      {
+      while (true) {
         field = iprot.readFieldBegin();
-        if (field.type == TType.STOP) { 
+        if (field.type == TType.STOP) {
           break;
         }
-        switch (field.id)
-        {
+        switch (field.id) {
           case SUCCESS:
             if (field.type == TType.STRING) {
               this.success = iprot.readString();
-            } else { 
+            } else {
               TProtocolUtil.skip(iprot, field.type);
             }
             break;
@@ -1114,7 +1055,7 @@ public class FacebookService {
 
   }
 
-  public static class getVersion_args implements TBase, java.io.Serializable, Cloneable, Comparable<getVersion_args>   {
+  public static class getVersion_args implements TBase, java.io.Serializable, Cloneable, Comparable<getVersion_args> {
     private static final TStruct STRUCT_DESC = new TStruct("getVersion_args");
 
     public static final Map<Integer, FieldMetaData> metaDataMap = Collections.unmodifiableMap(new HashMap<Integer, FieldMetaData>() {{
@@ -1144,23 +1085,24 @@ public class FacebookService {
 
     public void setFieldValue(int fieldID, Object value) {
       switch (fieldID) {
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     public Object getFieldValue(int fieldID) {
       switch (fieldID) {
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     // Returns true if field corresponding to fieldID is set (has been asigned a value) and false otherwise
+
     public boolean isSet(int fieldID) {
       switch (fieldID) {
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
@@ -1169,7 +1111,7 @@ public class FacebookService {
       if (that == null)
         return false;
       if (that instanceof getVersion_args)
-        return this.equals((getVersion_args)that);
+        return this.equals((getVersion_args) that);
       return false;
     }
 
@@ -1191,7 +1133,7 @@ public class FacebookService {
       }
 
       int lastComparison = 0;
-      getVersion_args typedOther = (getVersion_args)other;
+      getVersion_args typedOther = (getVersion_args) other;
 
       return 0;
     }
@@ -1199,14 +1141,12 @@ public class FacebookService {
     public void read(TProtocol iprot) throws TException {
       TField field;
       iprot.readStructBegin();
-      while (true)
-      {
+      while (true) {
         field = iprot.readFieldBegin();
-        if (field.type == TType.STOP) { 
+        if (field.type == TType.STOP) {
           break;
         }
-        switch (field.id)
-        {
+        switch (field.id) {
           default:
             TProtocolUtil.skip(iprot, field.type);
             break;
@@ -1244,9 +1184,9 @@ public class FacebookService {
 
   }
 
-  public static class getVersion_result implements TBase, java.io.Serializable, Cloneable, Comparable<getVersion_result>   {
+  public static class getVersion_result implements TBase, java.io.Serializable, Cloneable, Comparable<getVersion_result> {
     private static final TStruct STRUCT_DESC = new TStruct("getVersion_result");
-    private static final TField SUCCESS_FIELD_DESC = new TField("success", TType.STRING, (short)0);
+    private static final TField SUCCESS_FIELD_DESC = new TField("success", TType.STRING, (short) 0);
 
     public String success;
     public static final int SUCCESS = 0;
@@ -1254,7 +1194,7 @@ public class FacebookService {
     // isset id assignments
 
     public static final Map<Integer, FieldMetaData> metaDataMap = Collections.unmodifiableMap(new HashMap<Integer, FieldMetaData>() {{
-      put(SUCCESS, new FieldMetaData("success", TFieldRequirementType.DEFAULT, 
+      put(SUCCESS, new FieldMetaData("success", TFieldRequirementType.DEFAULT,
           new FieldValueMetaData(TType.STRING)));
     }});
 
@@ -1266,8 +1206,7 @@ public class FacebookService {
     }
 
     public getVersion_result(
-      String success)
-    {
+        String success) {
       this();
       this.success = success;
     }
@@ -1304,6 +1243,7 @@ public class FacebookService {
     }
 
     // Returns true if field success is set (has been asigned a value) and false otherwise
+
     public boolean isSetSuccess() {
       return this.success != null;
     }
@@ -1316,36 +1256,37 @@ public class FacebookService {
 
     public void setFieldValue(int fieldID, Object value) {
       switch (fieldID) {
-      case SUCCESS:
-        if (value == null) {
-          unsetSuccess();
-        } else {
-          setSuccess((String)value);
-        }
-        break;
+        case SUCCESS:
+          if (value == null) {
+            unsetSuccess();
+          } else {
+            setSuccess((String) value);
+          }
+          break;
 
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     public Object getFieldValue(int fieldID) {
       switch (fieldID) {
-      case SUCCESS:
-        return getSuccess();
+        case SUCCESS:
+          return getSuccess();
 
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     // Returns true if field corresponding to fieldID is set (has been asigned a value) and false otherwise
+
     public boolean isSet(int fieldID) {
       switch (fieldID) {
-      case SUCCESS:
-        return isSetSuccess();
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        case SUCCESS:
+          return isSetSuccess();
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
@@ -1354,7 +1295,7 @@ public class FacebookService {
       if (that == null)
         return false;
       if (that instanceof getVersion_result)
-        return this.equals((getVersion_result)that);
+        return this.equals((getVersion_result) that);
       return false;
     }
 
@@ -1385,7 +1326,7 @@ public class FacebookService {
       }
 
       int lastComparison = 0;
-      getVersion_result typedOther = (getVersion_result)other;
+      getVersion_result typedOther = (getVersion_result) other;
 
       lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(isSetSuccess());
       if (lastComparison != 0) {
@@ -1401,18 +1342,16 @@ public class FacebookService {
     public void read(TProtocol iprot) throws TException {
       TField field;
       iprot.readStructBegin();
-      while (true)
-      {
+      while (true) {
         field = iprot.readFieldBegin();
-        if (field.type == TType.STOP) { 
+        if (field.type == TType.STOP) {
           break;
         }
-        switch (field.id)
-        {
+        switch (field.id) {
           case SUCCESS:
             if (field.type == TType.STRING) {
               this.success = iprot.readString();
-            } else { 
+            } else {
               TProtocolUtil.skip(iprot, field.type);
             }
             break;
@@ -1464,7 +1403,7 @@ public class FacebookService {
 
   }
 
-  public static class getStatus_args implements TBase, java.io.Serializable, Cloneable, Comparable<getStatus_args>   {
+  public static class getStatus_args implements TBase, java.io.Serializable, Cloneable, Comparable<getStatus_args> {
     private static final TStruct STRUCT_DESC = new TStruct("getStatus_args");
 
     public static final Map<Integer, FieldMetaData> metaDataMap = Collections.unmodifiableMap(new HashMap<Integer, FieldMetaData>() {{
@@ -1494,23 +1433,24 @@ public class FacebookService {
 
     public void setFieldValue(int fieldID, Object value) {
       switch (fieldID) {
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     public Object getFieldValue(int fieldID) {
       switch (fieldID) {
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     // Returns true if field corresponding to fieldID is set (has been asigned a value) and false otherwise
+
     public boolean isSet(int fieldID) {
       switch (fieldID) {
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
@@ -1519,7 +1459,7 @@ public class FacebookService {
       if (that == null)
         return false;
       if (that instanceof getStatus_args)
-        return this.equals((getStatus_args)that);
+        return this.equals((getStatus_args) that);
       return false;
     }
 
@@ -1541,7 +1481,7 @@ public class FacebookService {
       }
 
       int lastComparison = 0;
-      getStatus_args typedOther = (getStatus_args)other;
+      getStatus_args typedOther = (getStatus_args) other;
 
       return 0;
     }
@@ -1549,14 +1489,12 @@ public class FacebookService {
     public void read(TProtocol iprot) throws TException {
       TField field;
       iprot.readStructBegin();
-      while (true)
-      {
+      while (true) {
         field = iprot.readFieldBegin();
-        if (field.type == TType.STOP) { 
+        if (field.type == TType.STOP) {
           break;
         }
-        switch (field.id)
-        {
+        switch (field.id) {
           default:
             TProtocolUtil.skip(iprot, field.type);
             break;
@@ -1594,12 +1532,11 @@ public class FacebookService {
 
   }
 
-  public static class getStatus_result implements TBase, java.io.Serializable, Cloneable, Comparable<getStatus_result>   {
+  public static class getStatus_result implements TBase, java.io.Serializable, Cloneable, Comparable<getStatus_result> {
     private static final TStruct STRUCT_DESC = new TStruct("getStatus_result");
-    private static final TField SUCCESS_FIELD_DESC = new TField("success", TType.I32, (short)0);
+    private static final TField SUCCESS_FIELD_DESC = new TField("success", TType.I32, (short) 0);
 
     /**
-     * 
      * @see fb_status
      */
     public int success;
@@ -1610,7 +1547,7 @@ public class FacebookService {
     private BitSet __isset_bit_vector = new BitSet(1);
 
     public static final Map<Integer, FieldMetaData> metaDataMap = Collections.unmodifiableMap(new HashMap<Integer, FieldMetaData>() {{
-      put(SUCCESS, new FieldMetaData("success", TFieldRequirementType.DEFAULT, 
+      put(SUCCESS, new FieldMetaData("success", TFieldRequirementType.DEFAULT,
           new FieldValueMetaData(TType.I32)));
     }});
 
@@ -1622,8 +1559,7 @@ public class FacebookService {
     }
 
     public getStatus_result(
-      int success)
-    {
+        int success) {
       this();
       this.success = success;
       setSuccessIsSet(true);
@@ -1648,7 +1584,6 @@ public class FacebookService {
     }
 
     /**
-     * 
      * @see fb_status
      */
     public int getSuccess() {
@@ -1656,7 +1591,6 @@ public class FacebookService {
     }
 
     /**
-     * 
      * @see fb_status
      */
     public getStatus_result setSuccess(int success) {
@@ -1670,6 +1604,7 @@ public class FacebookService {
     }
 
     // Returns true if field success is set (has been asigned a value) and false otherwise
+
     public boolean isSetSuccess() {
       return __isset_bit_vector.get(__SUCCESS_ISSET_ID);
     }
@@ -1680,36 +1615,37 @@ public class FacebookService {
 
     public void setFieldValue(int fieldID, Object value) {
       switch (fieldID) {
-      case SUCCESS:
-        if (value == null) {
-          unsetSuccess();
-        } else {
-          setSuccess((Integer)value);
-        }
-        break;
+        case SUCCESS:
+          if (value == null) {
+            unsetSuccess();
+          } else {
+            setSuccess((Integer) value);
+          }
+          break;
 
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     public Object getFieldValue(int fieldID) {
       switch (fieldID) {
-      case SUCCESS:
-        return getSuccess();
+        case SUCCESS:
+          return getSuccess();
 
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     // Returns true if field corresponding to fieldID is set (has been asigned a value) and false otherwise
+
     public boolean isSet(int fieldID) {
       switch (fieldID) {
-      case SUCCESS:
-        return isSetSuccess();
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        case SUCCESS:
+          return isSetSuccess();
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
@@ -1718,7 +1654,7 @@ public class FacebookService {
       if (that == null)
         return false;
       if (that instanceof getStatus_result)
-        return this.equals((getStatus_result)that);
+        return this.equals((getStatus_result) that);
       return false;
     }
 
@@ -1749,7 +1685,7 @@ public class FacebookService {
       }
 
       int lastComparison = 0;
-      getStatus_result typedOther = (getStatus_result)other;
+      getStatus_result typedOther = (getStatus_result) other;
 
       lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(isSetSuccess());
       if (lastComparison != 0) {
@@ -1765,19 +1701,17 @@ public class FacebookService {
     public void read(TProtocol iprot) throws TException {
       TField field;
       iprot.readStructBegin();
-      while (true)
-      {
+      while (true) {
         field = iprot.readFieldBegin();
-        if (field.type == TType.STOP) { 
+        if (field.type == TType.STOP) {
           break;
         }
-        switch (field.id)
-        {
+        switch (field.id) {
           case SUCCESS:
             if (field.type == TType.I32) {
               this.success = iprot.readI32();
               setSuccessIsSet(true);
-            } else { 
+            } else {
               TProtocolUtil.skip(iprot, field.type);
             }
             break;
@@ -1829,14 +1763,14 @@ public class FacebookService {
     public void validate() throws TException {
       // check for required fields
       // check that fields of type enum have valid values
-      if (isSetSuccess() && !fb_status.VALID_VALUES.contains(success)){
+      if (isSetSuccess() && !fb_status.VALID_VALUES.contains(success)) {
         throw new TProtocolException("The field 'success' has been assigned the invalid value " + success);
       }
     }
 
   }
 
-  public static class getStatusDetails_args implements TBase, java.io.Serializable, Cloneable, Comparable<getStatusDetails_args>   {
+  public static class getStatusDetails_args implements TBase, java.io.Serializable, Cloneable, Comparable<getStatusDetails_args> {
     private static final TStruct STRUCT_DESC = new TStruct("getStatusDetails_args");
 
     public static final Map<Integer, FieldMetaData> metaDataMap = Collections.unmodifiableMap(new HashMap<Integer, FieldMetaData>() {{
@@ -1866,23 +1800,24 @@ public class FacebookService {
 
     public void setFieldValue(int fieldID, Object value) {
       switch (fieldID) {
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     public Object getFieldValue(int fieldID) {
       switch (fieldID) {
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     // Returns true if field corresponding to fieldID is set (has been asigned a value) and false otherwise
+
     public boolean isSet(int fieldID) {
       switch (fieldID) {
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
@@ -1891,7 +1826,7 @@ public class FacebookService {
       if (that == null)
         return false;
       if (that instanceof getStatusDetails_args)
-        return this.equals((getStatusDetails_args)that);
+        return this.equals((getStatusDetails_args) that);
       return false;
     }
 
@@ -1913,7 +1848,7 @@ public class FacebookService {
       }
 
       int lastComparison = 0;
-      getStatusDetails_args typedOther = (getStatusDetails_args)other;
+      getStatusDetails_args typedOther = (getStatusDetails_args) other;
 
       return 0;
     }
@@ -1921,14 +1856,12 @@ public class FacebookService {
     public void read(TProtocol iprot) throws TException {
       TField field;
       iprot.readStructBegin();
-      while (true)
-      {
+      while (true) {
         field = iprot.readFieldBegin();
-        if (field.type == TType.STOP) { 
+        if (field.type == TType.STOP) {
           break;
         }
-        switch (field.id)
-        {
+        switch (field.id) {
           default:
             TProtocolUtil.skip(iprot, field.type);
             break;
@@ -1966,9 +1899,9 @@ public class FacebookService {
 
   }
 
-  public static class getStatusDetails_result implements TBase, java.io.Serializable, Cloneable, Comparable<getStatusDetails_result>   {
+  public static class getStatusDetails_result implements TBase, java.io.Serializable, Cloneable, Comparable<getStatusDetails_result> {
     private static final TStruct STRUCT_DESC = new TStruct("getStatusDetails_result");
-    private static final TField SUCCESS_FIELD_DESC = new TField("success", TType.STRING, (short)0);
+    private static final TField SUCCESS_FIELD_DESC = new TField("success", TType.STRING, (short) 0);
 
     public String success;
     public static final int SUCCESS = 0;
@@ -1976,7 +1909,7 @@ public class FacebookService {
     // isset id assignments
 
     public static final Map<Integer, FieldMetaData> metaDataMap = Collections.unmodifiableMap(new HashMap<Integer, FieldMetaData>() {{
-      put(SUCCESS, new FieldMetaData("success", TFieldRequirementType.DEFAULT, 
+      put(SUCCESS, new FieldMetaData("success", TFieldRequirementType.DEFAULT,
           new FieldValueMetaData(TType.STRING)));
     }});
 
@@ -1988,8 +1921,7 @@ public class FacebookService {
     }
 
     public getStatusDetails_result(
-      String success)
-    {
+        String success) {
       this();
       this.success = success;
     }
@@ -2026,6 +1958,7 @@ public class FacebookService {
     }
 
     // Returns true if field success is set (has been asigned a value) and false otherwise
+
     public boolean isSetSuccess() {
       return this.success != null;
     }
@@ -2038,36 +1971,37 @@ public class FacebookService {
 
     public void setFieldValue(int fieldID, Object value) {
       switch (fieldID) {
-      case SUCCESS:
-        if (value == null) {
-          unsetSuccess();
-        } else {
-          setSuccess((String)value);
-        }
-        break;
+        case SUCCESS:
+          if (value == null) {
+            unsetSuccess();
+          } else {
+            setSuccess((String) value);
+          }
+          break;
 
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     public Object getFieldValue(int fieldID) {
       switch (fieldID) {
-      case SUCCESS:
-        return getSuccess();
+        case SUCCESS:
+          return getSuccess();
 
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     // Returns true if field corresponding to fieldID is set (has been asigned a value) and false otherwise
+
     public boolean isSet(int fieldID) {
       switch (fieldID) {
-      case SUCCESS:
-        return isSetSuccess();
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        case SUCCESS:
+          return isSetSuccess();
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
@@ -2076,7 +2010,7 @@ public class FacebookService {
       if (that == null)
         return false;
       if (that instanceof getStatusDetails_result)
-        return this.equals((getStatusDetails_result)that);
+        return this.equals((getStatusDetails_result) that);
       return false;
     }
 
@@ -2107,7 +2041,7 @@ public class FacebookService {
       }
 
       int lastComparison = 0;
-      getStatusDetails_result typedOther = (getStatusDetails_result)other;
+      getStatusDetails_result typedOther = (getStatusDetails_result) other;
 
       lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(isSetSuccess());
       if (lastComparison != 0) {
@@ -2123,18 +2057,16 @@ public class FacebookService {
     public void read(TProtocol iprot) throws TException {
       TField field;
       iprot.readStructBegin();
-      while (true)
-      {
+      while (true) {
         field = iprot.readFieldBegin();
-        if (field.type == TType.STOP) { 
+        if (field.type == TType.STOP) {
           break;
         }
-        switch (field.id)
-        {
+        switch (field.id) {
           case SUCCESS:
             if (field.type == TType.STRING) {
               this.success = iprot.readString();
-            } else { 
+            } else {
               TProtocolUtil.skip(iprot, field.type);
             }
             break;
@@ -2186,7 +2118,7 @@ public class FacebookService {
 
   }
 
-  public static class getCounters_args implements TBase, java.io.Serializable, Cloneable, Comparable<getCounters_args>   {
+  public static class getCounters_args implements TBase, java.io.Serializable, Cloneable, Comparable<getCounters_args> {
     private static final TStruct STRUCT_DESC = new TStruct("getCounters_args");
 
     public static final Map<Integer, FieldMetaData> metaDataMap = Collections.unmodifiableMap(new HashMap<Integer, FieldMetaData>() {{
@@ -2216,23 +2148,24 @@ public class FacebookService {
 
     public void setFieldValue(int fieldID, Object value) {
       switch (fieldID) {
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     public Object getFieldValue(int fieldID) {
       switch (fieldID) {
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     // Returns true if field corresponding to fieldID is set (has been asigned a value) and false otherwise
+
     public boolean isSet(int fieldID) {
       switch (fieldID) {
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
@@ -2241,7 +2174,7 @@ public class FacebookService {
       if (that == null)
         return false;
       if (that instanceof getCounters_args)
-        return this.equals((getCounters_args)that);
+        return this.equals((getCounters_args) that);
       return false;
     }
 
@@ -2263,7 +2196,7 @@ public class FacebookService {
       }
 
       int lastComparison = 0;
-      getCounters_args typedOther = (getCounters_args)other;
+      getCounters_args typedOther = (getCounters_args) other;
 
       return 0;
     }
@@ -2271,14 +2204,12 @@ public class FacebookService {
     public void read(TProtocol iprot) throws TException {
       TField field;
       iprot.readStructBegin();
-      while (true)
-      {
+      while (true) {
         field = iprot.readFieldBegin();
-        if (field.type == TType.STOP) { 
+        if (field.type == TType.STOP) {
           break;
         }
-        switch (field.id)
-        {
+        switch (field.id) {
           default:
             TProtocolUtil.skip(iprot, field.type);
             break;
@@ -2316,19 +2247,19 @@ public class FacebookService {
 
   }
 
-  public static class getCounters_result implements TBase, java.io.Serializable, Cloneable   {
+  public static class getCounters_result implements TBase, java.io.Serializable, Cloneable {
     private static final TStruct STRUCT_DESC = new TStruct("getCounters_result");
-    private static final TField SUCCESS_FIELD_DESC = new TField("success", TType.MAP, (short)0);
+    private static final TField SUCCESS_FIELD_DESC = new TField("success", TType.MAP, (short) 0);
 
-    public Map<String,Long> success;
+    public Map<String, Long> success;
     public static final int SUCCESS = 0;
 
     // isset id assignments
 
     public static final Map<Integer, FieldMetaData> metaDataMap = Collections.unmodifiableMap(new HashMap<Integer, FieldMetaData>() {{
-      put(SUCCESS, new FieldMetaData("success", TFieldRequirementType.DEFAULT, 
-          new MapMetaData(TType.MAP, 
-              new FieldValueMetaData(TType.STRING), 
+      put(SUCCESS, new FieldMetaData("success", TFieldRequirementType.DEFAULT,
+          new MapMetaData(TType.MAP,
+              new FieldValueMetaData(TType.STRING),
               new FieldValueMetaData(TType.I64))));
     }});
 
@@ -2340,8 +2271,7 @@ public class FacebookService {
     }
 
     public getCounters_result(
-      Map<String,Long> success)
-    {
+        Map<String, Long> success) {
       this();
       this.success = success;
     }
@@ -2351,7 +2281,7 @@ public class FacebookService {
      */
     public getCounters_result(getCounters_result other) {
       if (other.isSetSuccess()) {
-        Map<String,Long> __this__success = new HashMap<String,Long>();
+        Map<String, Long> __this__success = new HashMap<String, Long>();
         for (Map.Entry<String, Long> other_element : other.success.entrySet()) {
 
           String other_element_key = other_element.getKey();
@@ -2376,11 +2306,11 @@ public class FacebookService {
       return new getCounters_result(this);
     }
 
-    public Map<String,Long> getSuccess() {
+    public Map<String, Long> getSuccess() {
       return this.success;
     }
 
-    public getCounters_result setSuccess(Map<String,Long> success) {
+    public getCounters_result setSuccess(Map<String, Long> success) {
       this.success = success;
       return this;
     }
@@ -2390,6 +2320,7 @@ public class FacebookService {
     }
 
     // Returns true if field success is set (has been asigned a value) and false otherwise
+
     public boolean isSetSuccess() {
       return this.success != null;
     }
@@ -2402,36 +2333,37 @@ public class FacebookService {
 
     public void setFieldValue(int fieldID, Object value) {
       switch (fieldID) {
-      case SUCCESS:
-        if (value == null) {
-          unsetSuccess();
-        } else {
-          setSuccess((Map<String,Long>)value);
-        }
-        break;
+        case SUCCESS:
+          if (value == null) {
+            unsetSuccess();
+          } else {
+            setSuccess((Map<String, Long>) value);
+          }
+          break;
 
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     public Object getFieldValue(int fieldID) {
       switch (fieldID) {
-      case SUCCESS:
-        return getSuccess();
+        case SUCCESS:
+          return getSuccess();
 
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     // Returns true if field corresponding to fieldID is set (has been asigned a value) and false otherwise
+
     public boolean isSet(int fieldID) {
       switch (fieldID) {
-      case SUCCESS:
-        return isSetSuccess();
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        case SUCCESS:
+          return isSetSuccess();
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
@@ -2440,7 +2372,7 @@ public class FacebookService {
       if (that == null)
         return false;
       if (that instanceof getCounters_result)
-        return this.equals((getCounters_result)that);
+        return this.equals((getCounters_result) that);
       return false;
     }
 
@@ -2468,21 +2400,18 @@ public class FacebookService {
     public void read(TProtocol iprot) throws TException {
       TField field;
       iprot.readStructBegin();
-      while (true)
-      {
+      while (true) {
         field = iprot.readFieldBegin();
-        if (field.type == TType.STOP) { 
+        if (field.type == TType.STOP) {
           break;
         }
-        switch (field.id)
-        {
+        switch (field.id) {
           case SUCCESS:
             if (field.type == TType.MAP) {
               {
                 TMap _map0 = iprot.readMapBegin();
-                this.success = new HashMap<String,Long>(2*_map0.size);
-                for (int _i1 = 0; _i1 < _map0.size; ++_i1)
-                {
+                this.success = new HashMap<String, Long>(2 * _map0.size);
+                for (int _i1 = 0; _i1 < _map0.size; ++_i1) {
                   String _key2;
                   long _val3;
                   _key2 = iprot.readString();
@@ -2491,7 +2420,7 @@ public class FacebookService {
                 }
                 iprot.readMapEnd();
               }
-            } else { 
+            } else {
               TProtocolUtil.skip(iprot, field.type);
             }
             break;
@@ -2515,8 +2444,7 @@ public class FacebookService {
         oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
         {
           oprot.writeMapBegin(new TMap(TType.STRING, TType.I64, this.success.size()));
-          for (Map.Entry<String, Long> _iter4 : this.success.entrySet())
-          {
+          for (Map.Entry<String, Long> _iter4 : this.success.entrySet()) {
             oprot.writeString(_iter4.getKey());
             oprot.writeI64(_iter4.getValue());
           }
@@ -2551,9 +2479,9 @@ public class FacebookService {
 
   }
 
-  public static class getCounter_args implements TBase, java.io.Serializable, Cloneable, Comparable<getCounter_args>   {
+  public static class getCounter_args implements TBase, java.io.Serializable, Cloneable, Comparable<getCounter_args> {
     private static final TStruct STRUCT_DESC = new TStruct("getCounter_args");
-    private static final TField KEY_FIELD_DESC = new TField("key", TType.STRING, (short)1);
+    private static final TField KEY_FIELD_DESC = new TField("key", TType.STRING, (short) 1);
 
     public String key;
     public static final int KEY = 1;
@@ -2561,7 +2489,7 @@ public class FacebookService {
     // isset id assignments
 
     public static final Map<Integer, FieldMetaData> metaDataMap = Collections.unmodifiableMap(new HashMap<Integer, FieldMetaData>() {{
-      put(KEY, new FieldMetaData("key", TFieldRequirementType.DEFAULT, 
+      put(KEY, new FieldMetaData("key", TFieldRequirementType.DEFAULT,
           new FieldValueMetaData(TType.STRING)));
     }});
 
@@ -2573,8 +2501,7 @@ public class FacebookService {
     }
 
     public getCounter_args(
-      String key)
-    {
+        String key) {
       this();
       this.key = key;
     }
@@ -2611,6 +2538,7 @@ public class FacebookService {
     }
 
     // Returns true if field key is set (has been asigned a value) and false otherwise
+
     public boolean isSetKey() {
       return this.key != null;
     }
@@ -2623,36 +2551,37 @@ public class FacebookService {
 
     public void setFieldValue(int fieldID, Object value) {
       switch (fieldID) {
-      case KEY:
-        if (value == null) {
-          unsetKey();
-        } else {
-          setKey((String)value);
-        }
-        break;
+        case KEY:
+          if (value == null) {
+            unsetKey();
+          } else {
+            setKey((String) value);
+          }
+          break;
 
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     public Object getFieldValue(int fieldID) {
       switch (fieldID) {
-      case KEY:
-        return getKey();
+        case KEY:
+          return getKey();
 
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     // Returns true if field corresponding to fieldID is set (has been asigned a value) and false otherwise
+
     public boolean isSet(int fieldID) {
       switch (fieldID) {
-      case KEY:
-        return isSetKey();
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        case KEY:
+          return isSetKey();
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
@@ -2661,7 +2590,7 @@ public class FacebookService {
       if (that == null)
         return false;
       if (that instanceof getCounter_args)
-        return this.equals((getCounter_args)that);
+        return this.equals((getCounter_args) that);
       return false;
     }
 
@@ -2692,7 +2621,7 @@ public class FacebookService {
       }
 
       int lastComparison = 0;
-      getCounter_args typedOther = (getCounter_args)other;
+      getCounter_args typedOther = (getCounter_args) other;
 
       lastComparison = Boolean.valueOf(isSetKey()).compareTo(isSetKey());
       if (lastComparison != 0) {
@@ -2708,18 +2637,16 @@ public class FacebookService {
     public void read(TProtocol iprot) throws TException {
       TField field;
       iprot.readStructBegin();
-      while (true)
-      {
+      while (true) {
         field = iprot.readFieldBegin();
-        if (field.type == TType.STOP) { 
+        if (field.type == TType.STOP) {
           break;
         }
-        switch (field.id)
-        {
+        switch (field.id) {
           case KEY:
             if (field.type == TType.STRING) {
               this.key = iprot.readString();
-            } else { 
+            } else {
               TProtocolUtil.skip(iprot, field.type);
             }
             break;
@@ -2772,9 +2699,9 @@ public class FacebookService {
 
   }
 
-  public static class getCounter_result implements TBase, java.io.Serializable, Cloneable, Comparable<getCounter_result>   {
+  public static class getCounter_result implements TBase, java.io.Serializable, Cloneable, Comparable<getCounter_result> {
     private static final TStruct STRUCT_DESC = new TStruct("getCounter_result");
-    private static final TField SUCCESS_FIELD_DESC = new TField("success", TType.I64, (short)0);
+    private static final TField SUCCESS_FIELD_DESC = new TField("success", TType.I64, (short) 0);
 
     public long success;
     public static final int SUCCESS = 0;
@@ -2784,7 +2711,7 @@ public class FacebookService {
     private BitSet __isset_bit_vector = new BitSet(1);
 
     public static final Map<Integer, FieldMetaData> metaDataMap = Collections.unmodifiableMap(new HashMap<Integer, FieldMetaData>() {{
-      put(SUCCESS, new FieldMetaData("success", TFieldRequirementType.DEFAULT, 
+      put(SUCCESS, new FieldMetaData("success", TFieldRequirementType.DEFAULT,
           new FieldValueMetaData(TType.I64)));
     }});
 
@@ -2796,8 +2723,7 @@ public class FacebookService {
     }
 
     public getCounter_result(
-      long success)
-    {
+        long success) {
       this();
       this.success = success;
       setSuccessIsSet(true);
@@ -2836,6 +2762,7 @@ public class FacebookService {
     }
 
     // Returns true if field success is set (has been asigned a value) and false otherwise
+
     public boolean isSetSuccess() {
       return __isset_bit_vector.get(__SUCCESS_ISSET_ID);
     }
@@ -2846,36 +2773,37 @@ public class FacebookService {
 
     public void setFieldValue(int fieldID, Object value) {
       switch (fieldID) {
-      case SUCCESS:
-        if (value == null) {
-          unsetSuccess();
-        } else {
-          setSuccess((Long)value);
-        }
-        break;
+        case SUCCESS:
+          if (value == null) {
+            unsetSuccess();
+          } else {
+            setSuccess((Long) value);
+          }
+          break;
 
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     public Object getFieldValue(int fieldID) {
       switch (fieldID) {
-      case SUCCESS:
-        return new Long(getSuccess());
+        case SUCCESS:
+          return new Long(getSuccess());
 
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     // Returns true if field corresponding to fieldID is set (has been asigned a value) and false otherwise
+
     public boolean isSet(int fieldID) {
       switch (fieldID) {
-      case SUCCESS:
-        return isSetSuccess();
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        case SUCCESS:
+          return isSetSuccess();
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
@@ -2884,7 +2812,7 @@ public class FacebookService {
       if (that == null)
         return false;
       if (that instanceof getCounter_result)
-        return this.equals((getCounter_result)that);
+        return this.equals((getCounter_result) that);
       return false;
     }
 
@@ -2915,7 +2843,7 @@ public class FacebookService {
       }
 
       int lastComparison = 0;
-      getCounter_result typedOther = (getCounter_result)other;
+      getCounter_result typedOther = (getCounter_result) other;
 
       lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(isSetSuccess());
       if (lastComparison != 0) {
@@ -2931,19 +2859,17 @@ public class FacebookService {
     public void read(TProtocol iprot) throws TException {
       TField field;
       iprot.readStructBegin();
-      while (true)
-      {
+      while (true) {
         field = iprot.readFieldBegin();
-        if (field.type == TType.STOP) { 
+        if (field.type == TType.STOP) {
           break;
         }
-        switch (field.id)
-        {
+        switch (field.id) {
           case SUCCESS:
             if (field.type == TType.I64) {
               this.success = iprot.readI64();
               setSuccessIsSet(true);
-            } else { 
+            } else {
               TProtocolUtil.skip(iprot, field.type);
             }
             break;
@@ -2991,10 +2917,10 @@ public class FacebookService {
 
   }
 
-  public static class setOption_args implements TBase, java.io.Serializable, Cloneable, Comparable<setOption_args>   {
+  public static class setOption_args implements TBase, java.io.Serializable, Cloneable, Comparable<setOption_args> {
     private static final TStruct STRUCT_DESC = new TStruct("setOption_args");
-    private static final TField KEY_FIELD_DESC = new TField("key", TType.STRING, (short)1);
-    private static final TField VALUE_FIELD_DESC = new TField("value", TType.STRING, (short)2);
+    private static final TField KEY_FIELD_DESC = new TField("key", TType.STRING, (short) 1);
+    private static final TField VALUE_FIELD_DESC = new TField("value", TType.STRING, (short) 2);
 
     public String key;
     public String value;
@@ -3004,9 +2930,9 @@ public class FacebookService {
     // isset id assignments
 
     public static final Map<Integer, FieldMetaData> metaDataMap = Collections.unmodifiableMap(new HashMap<Integer, FieldMetaData>() {{
-      put(KEY, new FieldMetaData("key", TFieldRequirementType.DEFAULT, 
+      put(KEY, new FieldMetaData("key", TFieldRequirementType.DEFAULT,
           new FieldValueMetaData(TType.STRING)));
-      put(VALUE, new FieldMetaData("value", TFieldRequirementType.DEFAULT, 
+      put(VALUE, new FieldMetaData("value", TFieldRequirementType.DEFAULT,
           new FieldValueMetaData(TType.STRING)));
     }});
 
@@ -3018,9 +2944,8 @@ public class FacebookService {
     }
 
     public setOption_args(
-      String key,
-      String value)
-    {
+        String key,
+        String value) {
       this();
       this.key = key;
       this.value = value;
@@ -3061,6 +2986,7 @@ public class FacebookService {
     }
 
     // Returns true if field key is set (has been asigned a value) and false otherwise
+
     public boolean isSetKey() {
       return this.key != null;
     }
@@ -3085,6 +3011,7 @@ public class FacebookService {
     }
 
     // Returns true if field value is set (has been asigned a value) and false otherwise
+
     public boolean isSetValue() {
       return this.value != null;
     }
@@ -3097,49 +3024,50 @@ public class FacebookService {
 
     public void setFieldValue(int fieldID, Object value) {
       switch (fieldID) {
-      case KEY:
-        if (value == null) {
-          unsetKey();
-        } else {
-          setKey((String)value);
-        }
-        break;
+        case KEY:
+          if (value == null) {
+            unsetKey();
+          } else {
+            setKey((String) value);
+          }
+          break;
 
-      case VALUE:
-        if (value == null) {
-          unsetValue();
-        } else {
-          setValue((String)value);
-        }
-        break;
+        case VALUE:
+          if (value == null) {
+            unsetValue();
+          } else {
+            setValue((String) value);
+          }
+          break;
 
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     public Object getFieldValue(int fieldID) {
       switch (fieldID) {
-      case KEY:
-        return getKey();
+        case KEY:
+          return getKey();
 
-      case VALUE:
-        return getValue();
+        case VALUE:
+          return getValue();
 
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     // Returns true if field corresponding to fieldID is set (has been asigned a value) and false otherwise
+
     public boolean isSet(int fieldID) {
       switch (fieldID) {
-      case KEY:
-        return isSetKey();
-      case VALUE:
-        return isSetValue();
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        case KEY:
+          return isSetKey();
+        case VALUE:
+          return isSetValue();
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
@@ -3148,7 +3076,7 @@ public class FacebookService {
       if (that == null)
         return false;
       if (that instanceof setOption_args)
-        return this.equals((setOption_args)that);
+        return this.equals((setOption_args) that);
       return false;
     }
 
@@ -3188,7 +3116,7 @@ public class FacebookService {
       }
 
       int lastComparison = 0;
-      setOption_args typedOther = (setOption_args)other;
+      setOption_args typedOther = (setOption_args) other;
 
       lastComparison = Boolean.valueOf(isSetKey()).compareTo(isSetKey());
       if (lastComparison != 0) {
@@ -3212,25 +3140,23 @@ public class FacebookService {
     public void read(TProtocol iprot) throws TException {
       TField field;
       iprot.readStructBegin();
-      while (true)
-      {
+      while (true) {
         field = iprot.readFieldBegin();
-        if (field.type == TType.STOP) { 
+        if (field.type == TType.STOP) {
           break;
         }
-        switch (field.id)
-        {
+        switch (field.id) {
           case KEY:
             if (field.type == TType.STRING) {
               this.key = iprot.readString();
-            } else { 
+            } else {
               TProtocolUtil.skip(iprot, field.type);
             }
             break;
           case VALUE:
             if (field.type == TType.STRING) {
               this.value = iprot.readString();
-            } else { 
+            } else {
               TProtocolUtil.skip(iprot, field.type);
             }
             break;
@@ -3296,7 +3222,7 @@ public class FacebookService {
 
   }
 
-  public static class setOption_result implements TBase, java.io.Serializable, Cloneable, Comparable<setOption_result>   {
+  public static class setOption_result implements TBase, java.io.Serializable, Cloneable, Comparable<setOption_result> {
     private static final TStruct STRUCT_DESC = new TStruct("setOption_result");
 
     public static final Map<Integer, FieldMetaData> metaDataMap = Collections.unmodifiableMap(new HashMap<Integer, FieldMetaData>() {{
@@ -3326,23 +3252,24 @@ public class FacebookService {
 
     public void setFieldValue(int fieldID, Object value) {
       switch (fieldID) {
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     public Object getFieldValue(int fieldID) {
       switch (fieldID) {
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     // Returns true if field corresponding to fieldID is set (has been asigned a value) and false otherwise
+
     public boolean isSet(int fieldID) {
       switch (fieldID) {
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
@@ -3351,7 +3278,7 @@ public class FacebookService {
       if (that == null)
         return false;
       if (that instanceof setOption_result)
-        return this.equals((setOption_result)that);
+        return this.equals((setOption_result) that);
       return false;
     }
 
@@ -3373,7 +3300,7 @@ public class FacebookService {
       }
 
       int lastComparison = 0;
-      setOption_result typedOther = (setOption_result)other;
+      setOption_result typedOther = (setOption_result) other;
 
       return 0;
     }
@@ -3381,14 +3308,12 @@ public class FacebookService {
     public void read(TProtocol iprot) throws TException {
       TField field;
       iprot.readStructBegin();
-      while (true)
-      {
+      while (true) {
         field = iprot.readFieldBegin();
-        if (field.type == TType.STOP) { 
+        if (field.type == TType.STOP) {
           break;
         }
-        switch (field.id)
-        {
+        switch (field.id) {
           default:
             TProtocolUtil.skip(iprot, field.type);
             break;
@@ -3425,9 +3350,9 @@ public class FacebookService {
 
   }
 
-  public static class getOption_args implements TBase, java.io.Serializable, Cloneable, Comparable<getOption_args>   {
+  public static class getOption_args implements TBase, java.io.Serializable, Cloneable, Comparable<getOption_args> {
     private static final TStruct STRUCT_DESC = new TStruct("getOption_args");
-    private static final TField KEY_FIELD_DESC = new TField("key", TType.STRING, (short)1);
+    private static final TField KEY_FIELD_DESC = new TField("key", TType.STRING, (short) 1);
 
     public String key;
     public static final int KEY = 1;
@@ -3435,7 +3360,7 @@ public class FacebookService {
     // isset id assignments
 
     public static final Map<Integer, FieldMetaData> metaDataMap = Collections.unmodifiableMap(new HashMap<Integer, FieldMetaData>() {{
-      put(KEY, new FieldMetaData("key", TFieldRequirementType.DEFAULT, 
+      put(KEY, new FieldMetaData("key", TFieldRequirementType.DEFAULT,
           new FieldValueMetaData(TType.STRING)));
     }});
 
@@ -3447,8 +3372,7 @@ public class FacebookService {
     }
 
     public getOption_args(
-      String key)
-    {
+        String key) {
       this();
       this.key = key;
     }
@@ -3485,6 +3409,7 @@ public class FacebookService {
     }
 
     // Returns true if field key is set (has been asigned a value) and false otherwise
+
     public boolean isSetKey() {
       return this.key != null;
     }
@@ -3497,36 +3422,37 @@ public class FacebookService {
 
     public void setFieldValue(int fieldID, Object value) {
       switch (fieldID) {
-      case KEY:
-        if (value == null) {
-          unsetKey();
-        } else {
-          setKey((String)value);
-        }
-        break;
+        case KEY:
+          if (value == null) {
+            unsetKey();
+          } else {
+            setKey((String) value);
+          }
+          break;
 
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     public Object getFieldValue(int fieldID) {
       switch (fieldID) {
-      case KEY:
-        return getKey();
+        case KEY:
+          return getKey();
 
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     // Returns true if field corresponding to fieldID is set (has been asigned a value) and false otherwise
+
     public boolean isSet(int fieldID) {
       switch (fieldID) {
-      case KEY:
-        return isSetKey();
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        case KEY:
+          return isSetKey();
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
@@ -3535,7 +3461,7 @@ public class FacebookService {
       if (that == null)
         return false;
       if (that instanceof getOption_args)
-        return this.equals((getOption_args)that);
+        return this.equals((getOption_args) that);
       return false;
     }
 
@@ -3566,7 +3492,7 @@ public class FacebookService {
       }
 
       int lastComparison = 0;
-      getOption_args typedOther = (getOption_args)other;
+      getOption_args typedOther = (getOption_args) other;
 
       lastComparison = Boolean.valueOf(isSetKey()).compareTo(isSetKey());
       if (lastComparison != 0) {
@@ -3582,18 +3508,16 @@ public class FacebookService {
     public void read(TProtocol iprot) throws TException {
       TField field;
       iprot.readStructBegin();
-      while (true)
-      {
+      while (true) {
         field = iprot.readFieldBegin();
-        if (field.type == TType.STOP) { 
+        if (field.type == TType.STOP) {
           break;
         }
-        switch (field.id)
-        {
+        switch (field.id) {
           case KEY:
             if (field.type == TType.STRING) {
               this.key = iprot.readString();
-            } else { 
+            } else {
               TProtocolUtil.skip(iprot, field.type);
             }
             break;
@@ -3646,9 +3570,9 @@ public class FacebookService {
 
   }
 
-  public static class getOption_result implements TBase, java.io.Serializable, Cloneable, Comparable<getOption_result>   {
+  public static class getOption_result implements TBase, java.io.Serializable, Cloneable, Comparable<getOption_result> {
     private static final TStruct STRUCT_DESC = new TStruct("getOption_result");
-    private static final TField SUCCESS_FIELD_DESC = new TField("success", TType.STRING, (short)0);
+    private static final TField SUCCESS_FIELD_DESC = new TField("success", TType.STRING, (short) 0);
 
     public String success;
     public static final int SUCCESS = 0;
@@ -3656,7 +3580,7 @@ public class FacebookService {
     // isset id assignments
 
     public static final Map<Integer, FieldMetaData> metaDataMap = Collections.unmodifiableMap(new HashMap<Integer, FieldMetaData>() {{
-      put(SUCCESS, new FieldMetaData("success", TFieldRequirementType.DEFAULT, 
+      put(SUCCESS, new FieldMetaData("success", TFieldRequirementType.DEFAULT,
           new FieldValueMetaData(TType.STRING)));
     }});
 
@@ -3668,8 +3592,7 @@ public class FacebookService {
     }
 
     public getOption_result(
-      String success)
-    {
+        String success) {
       this();
       this.success = success;
     }
@@ -3706,6 +3629,7 @@ public class FacebookService {
     }
 
     // Returns true if field success is set (has been asigned a value) and false otherwise
+
     public boolean isSetSuccess() {
       return this.success != null;
     }
@@ -3718,36 +3642,37 @@ public class FacebookService {
 
     public void setFieldValue(int fieldID, Object value) {
       switch (fieldID) {
-      case SUCCESS:
-        if (value == null) {
-          unsetSuccess();
-        } else {
-          setSuccess((String)value);
-        }
-        break;
+        case SUCCESS:
+          if (value == null) {
+            unsetSuccess();
+          } else {
+            setSuccess((String) value);
+          }
+          break;
 
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     public Object getFieldValue(int fieldID) {
       switch (fieldID) {
-      case SUCCESS:
-        return getSuccess();
+        case SUCCESS:
+          return getSuccess();
 
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     // Returns true if field corresponding to fieldID is set (has been asigned a value) and false otherwise
+
     public boolean isSet(int fieldID) {
       switch (fieldID) {
-      case SUCCESS:
-        return isSetSuccess();
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        case SUCCESS:
+          return isSetSuccess();
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
@@ -3756,7 +3681,7 @@ public class FacebookService {
       if (that == null)
         return false;
       if (that instanceof getOption_result)
-        return this.equals((getOption_result)that);
+        return this.equals((getOption_result) that);
       return false;
     }
 
@@ -3787,7 +3712,7 @@ public class FacebookService {
       }
 
       int lastComparison = 0;
-      getOption_result typedOther = (getOption_result)other;
+      getOption_result typedOther = (getOption_result) other;
 
       lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(isSetSuccess());
       if (lastComparison != 0) {
@@ -3803,18 +3728,16 @@ public class FacebookService {
     public void read(TProtocol iprot) throws TException {
       TField field;
       iprot.readStructBegin();
-      while (true)
-      {
+      while (true) {
         field = iprot.readFieldBegin();
-        if (field.type == TType.STOP) { 
+        if (field.type == TType.STOP) {
           break;
         }
-        switch (field.id)
-        {
+        switch (field.id) {
           case SUCCESS:
             if (field.type == TType.STRING) {
               this.success = iprot.readString();
-            } else { 
+            } else {
               TProtocolUtil.skip(iprot, field.type);
             }
             break;
@@ -3866,7 +3789,7 @@ public class FacebookService {
 
   }
 
-  public static class getOptions_args implements TBase, java.io.Serializable, Cloneable, Comparable<getOptions_args>   {
+  public static class getOptions_args implements TBase, java.io.Serializable, Cloneable, Comparable<getOptions_args> {
     private static final TStruct STRUCT_DESC = new TStruct("getOptions_args");
 
     public static final Map<Integer, FieldMetaData> metaDataMap = Collections.unmodifiableMap(new HashMap<Integer, FieldMetaData>() {{
@@ -3896,23 +3819,24 @@ public class FacebookService {
 
     public void setFieldValue(int fieldID, Object value) {
       switch (fieldID) {
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     public Object getFieldValue(int fieldID) {
       switch (fieldID) {
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     // Returns true if field corresponding to fieldID is set (has been asigned a value) and false otherwise
+
     public boolean isSet(int fieldID) {
       switch (fieldID) {
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
@@ -3921,7 +3845,7 @@ public class FacebookService {
       if (that == null)
         return false;
       if (that instanceof getOptions_args)
-        return this.equals((getOptions_args)that);
+        return this.equals((getOptions_args) that);
       return false;
     }
 
@@ -3943,7 +3867,7 @@ public class FacebookService {
       }
 
       int lastComparison = 0;
-      getOptions_args typedOther = (getOptions_args)other;
+      getOptions_args typedOther = (getOptions_args) other;
 
       return 0;
     }
@@ -3951,14 +3875,12 @@ public class FacebookService {
     public void read(TProtocol iprot) throws TException {
       TField field;
       iprot.readStructBegin();
-      while (true)
-      {
+      while (true) {
         field = iprot.readFieldBegin();
-        if (field.type == TType.STOP) { 
+        if (field.type == TType.STOP) {
           break;
         }
-        switch (field.id)
-        {
+        switch (field.id) {
           default:
             TProtocolUtil.skip(iprot, field.type);
             break;
@@ -3996,19 +3918,19 @@ public class FacebookService {
 
   }
 
-  public static class getOptions_result implements TBase, java.io.Serializable, Cloneable   {
+  public static class getOptions_result implements TBase, java.io.Serializable, Cloneable {
     private static final TStruct STRUCT_DESC = new TStruct("getOptions_result");
-    private static final TField SUCCESS_FIELD_DESC = new TField("success", TType.MAP, (short)0);
+    private static final TField SUCCESS_FIELD_DESC = new TField("success", TType.MAP, (short) 0);
 
-    public Map<String,String> success;
+    public Map<String, String> success;
     public static final int SUCCESS = 0;
 
     // isset id assignments
 
     public static final Map<Integer, FieldMetaData> metaDataMap = Collections.unmodifiableMap(new HashMap<Integer, FieldMetaData>() {{
-      put(SUCCESS, new FieldMetaData("success", TFieldRequirementType.DEFAULT, 
-          new MapMetaData(TType.MAP, 
-              new FieldValueMetaData(TType.STRING), 
+      put(SUCCESS, new FieldMetaData("success", TFieldRequirementType.DEFAULT,
+          new MapMetaData(TType.MAP,
+              new FieldValueMetaData(TType.STRING),
               new FieldValueMetaData(TType.STRING))));
     }});
 
@@ -4020,8 +3942,7 @@ public class FacebookService {
     }
 
     public getOptions_result(
-      Map<String,String> success)
-    {
+        Map<String, String> success) {
       this();
       this.success = success;
     }
@@ -4031,7 +3952,7 @@ public class FacebookService {
      */
     public getOptions_result(getOptions_result other) {
       if (other.isSetSuccess()) {
-        Map<String,String> __this__success = new HashMap<String,String>();
+        Map<String, String> __this__success = new HashMap<String, String>();
         for (Map.Entry<String, String> other_element : other.success.entrySet()) {
 
           String other_element_key = other_element.getKey();
@@ -4056,11 +3977,11 @@ public class FacebookService {
       return new getOptions_result(this);
     }
 
-    public Map<String,String> getSuccess() {
+    public Map<String, String> getSuccess() {
       return this.success;
     }
 
-    public getOptions_result setSuccess(Map<String,String> success) {
+    public getOptions_result setSuccess(Map<String, String> success) {
       this.success = success;
       return this;
     }
@@ -4070,6 +3991,7 @@ public class FacebookService {
     }
 
     // Returns true if field success is set (has been asigned a value) and false otherwise
+
     public boolean isSetSuccess() {
       return this.success != null;
     }
@@ -4082,36 +4004,37 @@ public class FacebookService {
 
     public void setFieldValue(int fieldID, Object value) {
       switch (fieldID) {
-      case SUCCESS:
-        if (value == null) {
-          unsetSuccess();
-        } else {
-          setSuccess((Map<String,String>)value);
-        }
-        break;
+        case SUCCESS:
+          if (value == null) {
+            unsetSuccess();
+          } else {
+            setSuccess((Map<String, String>) value);
+          }
+          break;
 
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     public Object getFieldValue(int fieldID) {
       switch (fieldID) {
-      case SUCCESS:
-        return getSuccess();
+        case SUCCESS:
+          return getSuccess();
 
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     // Returns true if field corresponding to fieldID is set (has been asigned a value) and false otherwise
+
     public boolean isSet(int fieldID) {
       switch (fieldID) {
-      case SUCCESS:
-        return isSetSuccess();
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        case SUCCESS:
+          return isSetSuccess();
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
@@ -4120,7 +4043,7 @@ public class FacebookService {
       if (that == null)
         return false;
       if (that instanceof getOptions_result)
-        return this.equals((getOptions_result)that);
+        return this.equals((getOptions_result) that);
       return false;
     }
 
@@ -4148,21 +4071,18 @@ public class FacebookService {
     public void read(TProtocol iprot) throws TException {
       TField field;
       iprot.readStructBegin();
-      while (true)
-      {
+      while (true) {
         field = iprot.readFieldBegin();
-        if (field.type == TType.STOP) { 
+        if (field.type == TType.STOP) {
           break;
         }
-        switch (field.id)
-        {
+        switch (field.id) {
           case SUCCESS:
             if (field.type == TType.MAP) {
               {
                 TMap _map5 = iprot.readMapBegin();
-                this.success = new HashMap<String,String>(2*_map5.size);
-                for (int _i6 = 0; _i6 < _map5.size; ++_i6)
-                {
+                this.success = new HashMap<String, String>(2 * _map5.size);
+                for (int _i6 = 0; _i6 < _map5.size; ++_i6) {
                   String _key7;
                   String _val8;
                   _key7 = iprot.readString();
@@ -4171,7 +4091,7 @@ public class FacebookService {
                 }
                 iprot.readMapEnd();
               }
-            } else { 
+            } else {
               TProtocolUtil.skip(iprot, field.type);
             }
             break;
@@ -4195,8 +4115,7 @@ public class FacebookService {
         oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
         {
           oprot.writeMapBegin(new TMap(TType.STRING, TType.STRING, this.success.size()));
-          for (Map.Entry<String, String> _iter9 : this.success.entrySet())
-          {
+          for (Map.Entry<String, String> _iter9 : this.success.entrySet()) {
             oprot.writeString(_iter9.getKey());
             oprot.writeString(_iter9.getValue());
           }
@@ -4231,9 +4150,9 @@ public class FacebookService {
 
   }
 
-  public static class getCpuProfile_args implements TBase, java.io.Serializable, Cloneable, Comparable<getCpuProfile_args>   {
+  public static class getCpuProfile_args implements TBase, java.io.Serializable, Cloneable, Comparable<getCpuProfile_args> {
     private static final TStruct STRUCT_DESC = new TStruct("getCpuProfile_args");
-    private static final TField PROFILE_DURATION_IN_SEC_FIELD_DESC = new TField("profileDurationInSec", TType.I32, (short)1);
+    private static final TField PROFILE_DURATION_IN_SEC_FIELD_DESC = new TField("profileDurationInSec", TType.I32, (short) 1);
 
     public int profileDurationInSec;
     public static final int PROFILEDURATIONINSEC = 1;
@@ -4243,7 +4162,7 @@ public class FacebookService {
     private BitSet __isset_bit_vector = new BitSet(1);
 
     public static final Map<Integer, FieldMetaData> metaDataMap = Collections.unmodifiableMap(new HashMap<Integer, FieldMetaData>() {{
-      put(PROFILEDURATIONINSEC, new FieldMetaData("profileDurationInSec", TFieldRequirementType.DEFAULT, 
+      put(PROFILEDURATIONINSEC, new FieldMetaData("profileDurationInSec", TFieldRequirementType.DEFAULT,
           new FieldValueMetaData(TType.I32)));
     }});
 
@@ -4255,8 +4174,7 @@ public class FacebookService {
     }
 
     public getCpuProfile_args(
-      int profileDurationInSec)
-    {
+        int profileDurationInSec) {
       this();
       this.profileDurationInSec = profileDurationInSec;
       setProfileDurationInSecIsSet(true);
@@ -4295,6 +4213,7 @@ public class FacebookService {
     }
 
     // Returns true if field profileDurationInSec is set (has been asigned a value) and false otherwise
+
     public boolean isSetProfileDurationInSec() {
       return __isset_bit_vector.get(__PROFILEDURATIONINSEC_ISSET_ID);
     }
@@ -4305,36 +4224,37 @@ public class FacebookService {
 
     public void setFieldValue(int fieldID, Object value) {
       switch (fieldID) {
-      case PROFILEDURATIONINSEC:
-        if (value == null) {
-          unsetProfileDurationInSec();
-        } else {
-          setProfileDurationInSec((Integer)value);
-        }
-        break;
+        case PROFILEDURATIONINSEC:
+          if (value == null) {
+            unsetProfileDurationInSec();
+          } else {
+            setProfileDurationInSec((Integer) value);
+          }
+          break;
 
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     public Object getFieldValue(int fieldID) {
       switch (fieldID) {
-      case PROFILEDURATIONINSEC:
-        return new Integer(getProfileDurationInSec());
+        case PROFILEDURATIONINSEC:
+          return new Integer(getProfileDurationInSec());
 
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     // Returns true if field corresponding to fieldID is set (has been asigned a value) and false otherwise
+
     public boolean isSet(int fieldID) {
       switch (fieldID) {
-      case PROFILEDURATIONINSEC:
-        return isSetProfileDurationInSec();
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        case PROFILEDURATIONINSEC:
+          return isSetProfileDurationInSec();
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
@@ -4343,7 +4263,7 @@ public class FacebookService {
       if (that == null)
         return false;
       if (that instanceof getCpuProfile_args)
-        return this.equals((getCpuProfile_args)that);
+        return this.equals((getCpuProfile_args) that);
       return false;
     }
 
@@ -4374,7 +4294,7 @@ public class FacebookService {
       }
 
       int lastComparison = 0;
-      getCpuProfile_args typedOther = (getCpuProfile_args)other;
+      getCpuProfile_args typedOther = (getCpuProfile_args) other;
 
       lastComparison = Boolean.valueOf(isSetProfileDurationInSec()).compareTo(isSetProfileDurationInSec());
       if (lastComparison != 0) {
@@ -4390,19 +4310,17 @@ public class FacebookService {
     public void read(TProtocol iprot) throws TException {
       TField field;
       iprot.readStructBegin();
-      while (true)
-      {
+      while (true) {
         field = iprot.readFieldBegin();
-        if (field.type == TType.STOP) { 
+        if (field.type == TType.STOP) {
           break;
         }
-        switch (field.id)
-        {
+        switch (field.id) {
           case PROFILEDURATIONINSEC:
             if (field.type == TType.I32) {
               this.profileDurationInSec = iprot.readI32();
               setProfileDurationInSecIsSet(true);
-            } else { 
+            } else {
               TProtocolUtil.skip(iprot, field.type);
             }
             break;
@@ -4449,9 +4367,9 @@ public class FacebookService {
 
   }
 
-  public static class getCpuProfile_result implements TBase, java.io.Serializable, Cloneable, Comparable<getCpuProfile_result>   {
+  public static class getCpuProfile_result implements TBase, java.io.Serializable, Cloneable, Comparable<getCpuProfile_result> {
     private static final TStruct STRUCT_DESC = new TStruct("getCpuProfile_result");
-    private static final TField SUCCESS_FIELD_DESC = new TField("success", TType.STRING, (short)0);
+    private static final TField SUCCESS_FIELD_DESC = new TField("success", TType.STRING, (short) 0);
 
     public String success;
     public static final int SUCCESS = 0;
@@ -4459,7 +4377,7 @@ public class FacebookService {
     // isset id assignments
 
     public static final Map<Integer, FieldMetaData> metaDataMap = Collections.unmodifiableMap(new HashMap<Integer, FieldMetaData>() {{
-      put(SUCCESS, new FieldMetaData("success", TFieldRequirementType.DEFAULT, 
+      put(SUCCESS, new FieldMetaData("success", TFieldRequirementType.DEFAULT,
           new FieldValueMetaData(TType.STRING)));
     }});
 
@@ -4471,8 +4389,7 @@ public class FacebookService {
     }
 
     public getCpuProfile_result(
-      String success)
-    {
+        String success) {
       this();
       this.success = success;
     }
@@ -4509,6 +4426,7 @@ public class FacebookService {
     }
 
     // Returns true if field success is set (has been asigned a value) and false otherwise
+
     public boolean isSetSuccess() {
       return this.success != null;
     }
@@ -4521,36 +4439,37 @@ public class FacebookService {
 
     public void setFieldValue(int fieldID, Object value) {
       switch (fieldID) {
-      case SUCCESS:
-        if (value == null) {
-          unsetSuccess();
-        } else {
-          setSuccess((String)value);
-        }
-        break;
+        case SUCCESS:
+          if (value == null) {
+            unsetSuccess();
+          } else {
+            setSuccess((String) value);
+          }
+          break;
 
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     public Object getFieldValue(int fieldID) {
       switch (fieldID) {
-      case SUCCESS:
-        return getSuccess();
+        case SUCCESS:
+          return getSuccess();
 
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     // Returns true if field corresponding to fieldID is set (has been asigned a value) and false otherwise
+
     public boolean isSet(int fieldID) {
       switch (fieldID) {
-      case SUCCESS:
-        return isSetSuccess();
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        case SUCCESS:
+          return isSetSuccess();
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
@@ -4559,7 +4478,7 @@ public class FacebookService {
       if (that == null)
         return false;
       if (that instanceof getCpuProfile_result)
-        return this.equals((getCpuProfile_result)that);
+        return this.equals((getCpuProfile_result) that);
       return false;
     }
 
@@ -4590,7 +4509,7 @@ public class FacebookService {
       }
 
       int lastComparison = 0;
-      getCpuProfile_result typedOther = (getCpuProfile_result)other;
+      getCpuProfile_result typedOther = (getCpuProfile_result) other;
 
       lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(isSetSuccess());
       if (lastComparison != 0) {
@@ -4606,18 +4525,16 @@ public class FacebookService {
     public void read(TProtocol iprot) throws TException {
       TField field;
       iprot.readStructBegin();
-      while (true)
-      {
+      while (true) {
         field = iprot.readFieldBegin();
-        if (field.type == TType.STOP) { 
+        if (field.type == TType.STOP) {
           break;
         }
-        switch (field.id)
-        {
+        switch (field.id) {
           case SUCCESS:
             if (field.type == TType.STRING) {
               this.success = iprot.readString();
-            } else { 
+            } else {
               TProtocolUtil.skip(iprot, field.type);
             }
             break;
@@ -4669,7 +4586,7 @@ public class FacebookService {
 
   }
 
-  public static class aliveSince_args implements TBase, java.io.Serializable, Cloneable, Comparable<aliveSince_args>   {
+  public static class aliveSince_args implements TBase, java.io.Serializable, Cloneable, Comparable<aliveSince_args> {
     private static final TStruct STRUCT_DESC = new TStruct("aliveSince_args");
 
     public static final Map<Integer, FieldMetaData> metaDataMap = Collections.unmodifiableMap(new HashMap<Integer, FieldMetaData>() {{
@@ -4699,23 +4616,24 @@ public class FacebookService {
 
     public void setFieldValue(int fieldID, Object value) {
       switch (fieldID) {
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     public Object getFieldValue(int fieldID) {
       switch (fieldID) {
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     // Returns true if field corresponding to fieldID is set (has been asigned a value) and false otherwise
+
     public boolean isSet(int fieldID) {
       switch (fieldID) {
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
@@ -4724,7 +4642,7 @@ public class FacebookService {
       if (that == null)
         return false;
       if (that instanceof aliveSince_args)
-        return this.equals((aliveSince_args)that);
+        return this.equals((aliveSince_args) that);
       return false;
     }
 
@@ -4746,7 +4664,7 @@ public class FacebookService {
       }
 
       int lastComparison = 0;
-      aliveSince_args typedOther = (aliveSince_args)other;
+      aliveSince_args typedOther = (aliveSince_args) other;
 
       return 0;
     }
@@ -4754,14 +4672,12 @@ public class FacebookService {
     public void read(TProtocol iprot) throws TException {
       TField field;
       iprot.readStructBegin();
-      while (true)
-      {
+      while (true) {
         field = iprot.readFieldBegin();
-        if (field.type == TType.STOP) { 
+        if (field.type == TType.STOP) {
           break;
         }
-        switch (field.id)
-        {
+        switch (field.id) {
           default:
             TProtocolUtil.skip(iprot, field.type);
             break;
@@ -4799,9 +4715,9 @@ public class FacebookService {
 
   }
 
-  public static class aliveSince_result implements TBase, java.io.Serializable, Cloneable, Comparable<aliveSince_result>   {
+  public static class aliveSince_result implements TBase, java.io.Serializable, Cloneable, Comparable<aliveSince_result> {
     private static final TStruct STRUCT_DESC = new TStruct("aliveSince_result");
-    private static final TField SUCCESS_FIELD_DESC = new TField("success", TType.I64, (short)0);
+    private static final TField SUCCESS_FIELD_DESC = new TField("success", TType.I64, (short) 0);
 
     public long success;
     public static final int SUCCESS = 0;
@@ -4811,7 +4727,7 @@ public class FacebookService {
     private BitSet __isset_bit_vector = new BitSet(1);
 
     public static final Map<Integer, FieldMetaData> metaDataMap = Collections.unmodifiableMap(new HashMap<Integer, FieldMetaData>() {{
-      put(SUCCESS, new FieldMetaData("success", TFieldRequirementType.DEFAULT, 
+      put(SUCCESS, new FieldMetaData("success", TFieldRequirementType.DEFAULT,
           new FieldValueMetaData(TType.I64)));
     }});
 
@@ -4823,8 +4739,7 @@ public class FacebookService {
     }
 
     public aliveSince_result(
-      long success)
-    {
+        long success) {
       this();
       this.success = success;
       setSuccessIsSet(true);
@@ -4863,6 +4778,7 @@ public class FacebookService {
     }
 
     // Returns true if field success is set (has been asigned a value) and false otherwise
+
     public boolean isSetSuccess() {
       return __isset_bit_vector.get(__SUCCESS_ISSET_ID);
     }
@@ -4873,36 +4789,37 @@ public class FacebookService {
 
     public void setFieldValue(int fieldID, Object value) {
       switch (fieldID) {
-      case SUCCESS:
-        if (value == null) {
-          unsetSuccess();
-        } else {
-          setSuccess((Long)value);
-        }
-        break;
+        case SUCCESS:
+          if (value == null) {
+            unsetSuccess();
+          } else {
+            setSuccess((Long) value);
+          }
+          break;
 
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     public Object getFieldValue(int fieldID) {
       switch (fieldID) {
-      case SUCCESS:
-        return new Long(getSuccess());
+        case SUCCESS:
+          return new Long(getSuccess());
 
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     // Returns true if field corresponding to fieldID is set (has been asigned a value) and false otherwise
+
     public boolean isSet(int fieldID) {
       switch (fieldID) {
-      case SUCCESS:
-        return isSetSuccess();
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        case SUCCESS:
+          return isSetSuccess();
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
@@ -4911,7 +4828,7 @@ public class FacebookService {
       if (that == null)
         return false;
       if (that instanceof aliveSince_result)
-        return this.equals((aliveSince_result)that);
+        return this.equals((aliveSince_result) that);
       return false;
     }
 
@@ -4942,7 +4859,7 @@ public class FacebookService {
       }
 
       int lastComparison = 0;
-      aliveSince_result typedOther = (aliveSince_result)other;
+      aliveSince_result typedOther = (aliveSince_result) other;
 
       lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(isSetSuccess());
       if (lastComparison != 0) {
@@ -4958,19 +4875,17 @@ public class FacebookService {
     public void read(TProtocol iprot) throws TException {
       TField field;
       iprot.readStructBegin();
-      while (true)
-      {
+      while (true) {
         field = iprot.readFieldBegin();
-        if (field.type == TType.STOP) { 
+        if (field.type == TType.STOP) {
           break;
         }
-        switch (field.id)
-        {
+        switch (field.id) {
           case SUCCESS:
             if (field.type == TType.I64) {
               this.success = iprot.readI64();
               setSuccessIsSet(true);
-            } else { 
+            } else {
               TProtocolUtil.skip(iprot, field.type);
             }
             break;
@@ -5018,7 +4933,7 @@ public class FacebookService {
 
   }
 
-  public static class reinitialize_args implements TBase, java.io.Serializable, Cloneable, Comparable<reinitialize_args>   {
+  public static class reinitialize_args implements TBase, java.io.Serializable, Cloneable, Comparable<reinitialize_args> {
     private static final TStruct STRUCT_DESC = new TStruct("reinitialize_args");
 
     public static final Map<Integer, FieldMetaData> metaDataMap = Collections.unmodifiableMap(new HashMap<Integer, FieldMetaData>() {{
@@ -5048,23 +4963,24 @@ public class FacebookService {
 
     public void setFieldValue(int fieldID, Object value) {
       switch (fieldID) {
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     public Object getFieldValue(int fieldID) {
       switch (fieldID) {
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     // Returns true if field corresponding to fieldID is set (has been asigned a value) and false otherwise
+
     public boolean isSet(int fieldID) {
       switch (fieldID) {
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
@@ -5073,7 +4989,7 @@ public class FacebookService {
       if (that == null)
         return false;
       if (that instanceof reinitialize_args)
-        return this.equals((reinitialize_args)that);
+        return this.equals((reinitialize_args) that);
       return false;
     }
 
@@ -5095,7 +5011,7 @@ public class FacebookService {
       }
 
       int lastComparison = 0;
-      reinitialize_args typedOther = (reinitialize_args)other;
+      reinitialize_args typedOther = (reinitialize_args) other;
 
       return 0;
     }
@@ -5103,14 +5019,12 @@ public class FacebookService {
     public void read(TProtocol iprot) throws TException {
       TField field;
       iprot.readStructBegin();
-      while (true)
-      {
+      while (true) {
         field = iprot.readFieldBegin();
-        if (field.type == TType.STOP) { 
+        if (field.type == TType.STOP) {
           break;
         }
-        switch (field.id)
-        {
+        switch (field.id) {
           default:
             TProtocolUtil.skip(iprot, field.type);
             break;
@@ -5148,7 +5062,7 @@ public class FacebookService {
 
   }
 
-  public static class shutdown_args implements TBase, java.io.Serializable, Cloneable, Comparable<shutdown_args>   {
+  public static class shutdown_args implements TBase, java.io.Serializable, Cloneable, Comparable<shutdown_args> {
     private static final TStruct STRUCT_DESC = new TStruct("shutdown_args");
 
     public static final Map<Integer, FieldMetaData> metaDataMap = Collections.unmodifiableMap(new HashMap<Integer, FieldMetaData>() {{
@@ -5178,23 +5092,24 @@ public class FacebookService {
 
     public void setFieldValue(int fieldID, Object value) {
       switch (fieldID) {
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     public Object getFieldValue(int fieldID) {
       switch (fieldID) {
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     // Returns true if field corresponding to fieldID is set (has been asigned a value) and false otherwise
+
     public boolean isSet(int fieldID) {
       switch (fieldID) {
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
@@ -5203,7 +5118,7 @@ public class FacebookService {
       if (that == null)
         return false;
       if (that instanceof shutdown_args)
-        return this.equals((shutdown_args)that);
+        return this.equals((shutdown_args) that);
       return false;
     }
 
@@ -5225,7 +5140,7 @@ public class FacebookService {
       }
 
       int lastComparison = 0;
-      shutdown_args typedOther = (shutdown_args)other;
+      shutdown_args typedOther = (shutdown_args) other;
 
       return 0;
     }
@@ -5233,14 +5148,12 @@ public class FacebookService {
     public void read(TProtocol iprot) throws TException {
       TField field;
       iprot.readStructBegin();
-      while (true)
-      {
+      while (true) {
         field = iprot.readFieldBegin();
-        if (field.type == TType.STOP) { 
+        if (field.type == TType.STOP) {
           break;
         }
-        switch (field.id)
-        {
+        switch (field.id) {
           default:
             TProtocolUtil.skip(iprot, field.type);
             break;

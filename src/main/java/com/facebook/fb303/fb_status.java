@@ -6,12 +6,10 @@
 package com.facebook.fb303;
 
 
-import java.util.Set;
-import java.util.HashSet;
-import java.util.Collections;
 import org.apache.thrift.IntRangeSet;
-import java.util.Map;
+
 import java.util.HashMap;
+import java.util.Map;
 
 public class fb_status {
   public static final int DEAD = 0;
@@ -22,12 +20,12 @@ public class fb_status {
   public static final int WARNING = 5;
 
   public static final IntRangeSet VALID_VALUES = new IntRangeSet(
-    DEAD, 
-    STARTING, 
-    ALIVE, 
-    STOPPING, 
-    STOPPED, 
-    WARNING );
+      DEAD,
+      STARTING,
+      ALIVE,
+      STOPPING,
+      STOPPED,
+      WARNING);
 
   public static final Map<Integer, String> VALUES_TO_NAMES = new HashMap<Integer, String>() {{
     put(DEAD, "DEAD");

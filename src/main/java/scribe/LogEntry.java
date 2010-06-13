@@ -5,26 +5,22 @@
  */
 package scribe;
 
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Set;
-import java.util.HashSet;
-import java.util.Collections;
-import java.util.BitSet;
-import java.util.Arrays;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import org.apache.thrift.*;
-import org.apache.thrift.meta_data.*;
+import org.apache.thrift.TBase;
+import org.apache.thrift.TBaseHelper;
+import org.apache.thrift.TException;
+import org.apache.thrift.TFieldRequirementType;
+import org.apache.thrift.meta_data.FieldMetaData;
+import org.apache.thrift.meta_data.FieldValueMetaData;
 import org.apache.thrift.protocol.*;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LogEntry implements TBase, java.io.Serializable, Cloneable, Comparable<LogEntry> {
   private static final TStruct STRUCT_DESC = new TStruct("LogEntry");
-  private static final TField CATEGORY_FIELD_DESC = new TField("category", TType.STRING, (short)1);
-  private static final TField MESSAGE_FIELD_DESC = new TField("message", TType.STRING, (short)2);
+  private static final TField CATEGORY_FIELD_DESC = new TField("category", TType.STRING, (short) 1);
+  private static final TField MESSAGE_FIELD_DESC = new TField("message", TType.STRING, (short) 2);
 
   public String category;
   public String message;
@@ -34,9 +30,9 @@ public class LogEntry implements TBase, java.io.Serializable, Cloneable, Compara
   // isset id assignments
 
   public static final Map<Integer, FieldMetaData> metaDataMap = Collections.unmodifiableMap(new HashMap<Integer, FieldMetaData>() {{
-    put(CATEGORY, new FieldMetaData("category", TFieldRequirementType.DEFAULT, 
+    put(CATEGORY, new FieldMetaData("category", TFieldRequirementType.DEFAULT,
         new FieldValueMetaData(TType.STRING)));
-    put(MESSAGE, new FieldMetaData("message", TFieldRequirementType.DEFAULT, 
+    put(MESSAGE, new FieldMetaData("message", TFieldRequirementType.DEFAULT,
         new FieldValueMetaData(TType.STRING)));
   }});
 
@@ -48,9 +44,8 @@ public class LogEntry implements TBase, java.io.Serializable, Cloneable, Compara
   }
 
   public LogEntry(
-    String category,
-    String message)
-  {
+      String category,
+      String message) {
     this();
     this.category = category;
     this.message = message;
@@ -91,6 +86,7 @@ public class LogEntry implements TBase, java.io.Serializable, Cloneable, Compara
   }
 
   // Returns true if field category is set (has been asigned a value) and false otherwise
+
   public boolean isSetCategory() {
     return this.category != null;
   }
@@ -115,6 +111,7 @@ public class LogEntry implements TBase, java.io.Serializable, Cloneable, Compara
   }
 
   // Returns true if field message is set (has been asigned a value) and false otherwise
+
   public boolean isSetMessage() {
     return this.message != null;
   }
@@ -127,49 +124,50 @@ public class LogEntry implements TBase, java.io.Serializable, Cloneable, Compara
 
   public void setFieldValue(int fieldID, Object value) {
     switch (fieldID) {
-    case CATEGORY:
-      if (value == null) {
-        unsetCategory();
-      } else {
-        setCategory((String)value);
-      }
-      break;
+      case CATEGORY:
+        if (value == null) {
+          unsetCategory();
+        } else {
+          setCategory((String) value);
+        }
+        break;
 
-    case MESSAGE:
-      if (value == null) {
-        unsetMessage();
-      } else {
-        setMessage((String)value);
-      }
-      break;
+      case MESSAGE:
+        if (value == null) {
+          unsetMessage();
+        } else {
+          setMessage((String) value);
+        }
+        break;
 
-    default:
-      throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+      default:
+        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
     }
   }
 
   public Object getFieldValue(int fieldID) {
     switch (fieldID) {
-    case CATEGORY:
-      return getCategory();
+      case CATEGORY:
+        return getCategory();
 
-    case MESSAGE:
-      return getMessage();
+      case MESSAGE:
+        return getMessage();
 
-    default:
-      throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+      default:
+        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
     }
   }
 
   // Returns true if field corresponding to fieldID is set (has been asigned a value) and false otherwise
+
   public boolean isSet(int fieldID) {
     switch (fieldID) {
-    case CATEGORY:
-      return isSetCategory();
-    case MESSAGE:
-      return isSetMessage();
-    default:
-      throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+      case CATEGORY:
+        return isSetCategory();
+      case MESSAGE:
+        return isSetMessage();
+      default:
+        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
     }
   }
 
@@ -178,7 +176,7 @@ public class LogEntry implements TBase, java.io.Serializable, Cloneable, Compara
     if (that == null)
       return false;
     if (that instanceof LogEntry)
-      return this.equals((LogEntry)that);
+      return this.equals((LogEntry) that);
     return false;
   }
 
@@ -218,7 +216,7 @@ public class LogEntry implements TBase, java.io.Serializable, Cloneable, Compara
     }
 
     int lastComparison = 0;
-    LogEntry typedOther = (LogEntry)other;
+    LogEntry typedOther = (LogEntry) other;
 
     lastComparison = Boolean.valueOf(isSetCategory()).compareTo(isSetCategory());
     if (lastComparison != 0) {
@@ -242,25 +240,23 @@ public class LogEntry implements TBase, java.io.Serializable, Cloneable, Compara
   public void read(TProtocol iprot) throws TException {
     TField field;
     iprot.readStructBegin();
-    while (true)
-    {
+    while (true) {
       field = iprot.readFieldBegin();
-      if (field.type == TType.STOP) { 
+      if (field.type == TType.STOP) {
         break;
       }
-      switch (field.id)
-      {
+      switch (field.id) {
         case CATEGORY:
           if (field.type == TType.STRING) {
             this.category = iprot.readString();
-          } else { 
+          } else {
             TProtocolUtil.skip(iprot, field.type);
           }
           break;
         case MESSAGE:
           if (field.type == TType.STRING) {
             this.message = iprot.readString();
-          } else { 
+          } else {
             TProtocolUtil.skip(iprot, field.type);
           }
           break;

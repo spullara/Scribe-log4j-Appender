@@ -5,21 +5,16 @@
  */
 package scribe;
 
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Set;
-import java.util.HashSet;
-import java.util.Collections;
-import java.util.BitSet;
-import java.util.Arrays;
+import org.apache.thrift.*;
+import org.apache.thrift.meta_data.FieldMetaData;
+import org.apache.thrift.meta_data.FieldValueMetaData;
+import org.apache.thrift.meta_data.ListMetaData;
+import org.apache.thrift.meta_data.StructMetaData;
+import org.apache.thrift.protocol.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.apache.thrift.*;
-import org.apache.thrift.meta_data.*;
-import org.apache.thrift.protocol.*;
+import java.util.*;
 
 public class scribe {
 
@@ -30,24 +25,20 @@ public class scribe {
   }
 
   public static class Client extends com.facebook.fb303.FacebookService.Client implements Iface {
-    public Client(TProtocol prot)
-    {
+    public Client(TProtocol prot) {
       this(prot, prot);
     }
 
-    public Client(TProtocol iprot, TProtocol oprot)
-    {
+    public Client(TProtocol iprot, TProtocol oprot) {
       super(iprot, oprot);
     }
 
-    public int Log(List<LogEntry> messages) throws TException
-    {
+    public int Log(List<LogEntry> messages) throws TException {
       send_Log(messages);
       return recv_Log();
     }
 
-    public void send_Log(List<LogEntry> messages) throws TException
-    {
+    public void send_Log(List<LogEntry> messages) throws TException {
       oprot_.writeMessageBegin(new TMessage("Log", TMessageType.CALL, seqid_));
       Log_args args = new Log_args();
       args.messages = messages;
@@ -56,8 +47,7 @@ public class scribe {
       oprot_.getTransport().flush();
     }
 
-    public int recv_Log() throws TException
-    {
+    public int recv_Log() throws TException {
       TMessage msg = iprot_.readMessageBegin();
       if (msg.type == TMessageType.EXCEPTION) {
         TApplicationException x = TApplicationException.read(iprot_);
@@ -74,10 +64,11 @@ public class scribe {
     }
 
   }
+
   public static class Processor extends com.facebook.fb303.FacebookService.Processor implements TProcessor {
     private static final Logger LOGGER = LoggerFactory.getLogger(Processor.class.getName());
-    public Processor(Iface iface)
-    {
+
+    public Processor(Iface iface) {
       super(iface);
       iface_ = iface;
       processMap_.put("Log", new Log());
@@ -85,14 +76,13 @@ public class scribe {
 
     private Iface iface_;
 
-    public boolean process(TProtocol iprot, TProtocol oprot) throws TException
-    {
+    public boolean process(TProtocol iprot, TProtocol oprot) throws TException {
       TMessage msg = iprot.readMessageBegin();
       ProcessFunction fn = processMap_.get(msg.name);
       if (fn == null) {
         TProtocolUtil.skip(iprot, TType.STRUCT);
         iprot.readMessageEnd();
-        TApplicationException x = new TApplicationException(TApplicationException.UNKNOWN_METHOD, "Invalid method name: '"+msg.name+"'");
+        TApplicationException x = new TApplicationException(TApplicationException.UNKNOWN_METHOD, "Invalid method name: '" + msg.name + "'");
         oprot.writeMessageBegin(new TMessage(msg.name, TMessageType.EXCEPTION, msg.seqid));
         x.write(oprot);
         oprot.writeMessageEnd();
@@ -104,8 +94,7 @@ public class scribe {
     }
 
     private class Log implements ProcessFunction {
-      public void process(int seqid, TProtocol iprot, TProtocol oprot) throws TException
-      {
+      public void process(int seqid, TProtocol iprot, TProtocol oprot) throws TException {
         Log_args args = new Log_args();
         args.read(iprot);
         iprot.readMessageEnd();
@@ -122,9 +111,9 @@ public class scribe {
 
   }
 
-  public static class Log_args implements TBase, java.io.Serializable, Cloneable, Comparable<Log_args>   {
+  public static class Log_args implements TBase, java.io.Serializable, Cloneable, Comparable<Log_args> {
     private static final TStruct STRUCT_DESC = new TStruct("Log_args");
-    private static final TField MESSAGES_FIELD_DESC = new TField("messages", TType.LIST, (short)1);
+    private static final TField MESSAGES_FIELD_DESC = new TField("messages", TType.LIST, (short) 1);
 
     public List<LogEntry> messages;
     public static final int MESSAGES = 1;
@@ -132,8 +121,8 @@ public class scribe {
     // isset id assignments
 
     public static final Map<Integer, FieldMetaData> metaDataMap = Collections.unmodifiableMap(new HashMap<Integer, FieldMetaData>() {{
-      put(MESSAGES, new FieldMetaData("messages", TFieldRequirementType.DEFAULT, 
-          new ListMetaData(TType.LIST, 
+      put(MESSAGES, new FieldMetaData("messages", TFieldRequirementType.DEFAULT,
+          new ListMetaData(TType.LIST,
               new StructMetaData(TType.STRUCT, LogEntry.class))));
     }});
 
@@ -145,8 +134,7 @@ public class scribe {
     }
 
     public Log_args(
-      List<LogEntry> messages)
-    {
+        List<LogEntry> messages) {
       this();
       this.messages = messages;
     }
@@ -187,6 +175,7 @@ public class scribe {
     }
 
     // Returns true if field messages is set (has been asigned a value) and false otherwise
+
     public boolean isSetMessages() {
       return this.messages != null;
     }
@@ -199,36 +188,37 @@ public class scribe {
 
     public void setFieldValue(int fieldID, Object value) {
       switch (fieldID) {
-      case MESSAGES:
-        if (value == null) {
-          unsetMessages();
-        } else {
-          setMessages((List<LogEntry>)value);
-        }
-        break;
+        case MESSAGES:
+          if (value == null) {
+            unsetMessages();
+          } else {
+            setMessages((List<LogEntry>) value);
+          }
+          break;
 
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     public Object getFieldValue(int fieldID) {
       switch (fieldID) {
-      case MESSAGES:
-        return getMessages();
+        case MESSAGES:
+          return getMessages();
 
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     // Returns true if field corresponding to fieldID is set (has been asigned a value) and false otherwise
+
     public boolean isSet(int fieldID) {
       switch (fieldID) {
-      case MESSAGES:
-        return isSetMessages();
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        case MESSAGES:
+          return isSetMessages();
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
@@ -237,7 +227,7 @@ public class scribe {
       if (that == null)
         return false;
       if (that instanceof Log_args)
-        return this.equals((Log_args)that);
+        return this.equals((Log_args) that);
       return false;
     }
 
@@ -268,7 +258,7 @@ public class scribe {
       }
 
       int lastComparison = 0;
-      Log_args typedOther = (Log_args)other;
+      Log_args typedOther = (Log_args) other;
 
       lastComparison = Boolean.valueOf(isSetMessages()).compareTo(isSetMessages());
       if (lastComparison != 0) {
@@ -284,21 +274,18 @@ public class scribe {
     public void read(TProtocol iprot) throws TException {
       TField field;
       iprot.readStructBegin();
-      while (true)
-      {
+      while (true) {
         field = iprot.readFieldBegin();
-        if (field.type == TType.STOP) { 
+        if (field.type == TType.STOP) {
           break;
         }
-        switch (field.id)
-        {
+        switch (field.id) {
           case MESSAGES:
             if (field.type == TType.LIST) {
               {
                 TList _list0 = iprot.readListBegin();
                 this.messages = new ArrayList<LogEntry>(_list0.size);
-                for (int _i1 = 0; _i1 < _list0.size; ++_i1)
-                {
+                for (int _i1 = 0; _i1 < _list0.size; ++_i1) {
                   LogEntry _elem2;
                   _elem2 = new LogEntry();
                   _elem2.read(iprot);
@@ -306,7 +293,7 @@ public class scribe {
                 }
                 iprot.readListEnd();
               }
-            } else { 
+            } else {
               TProtocolUtil.skip(iprot, field.type);
             }
             break;
@@ -331,8 +318,7 @@ public class scribe {
         oprot.writeFieldBegin(MESSAGES_FIELD_DESC);
         {
           oprot.writeListBegin(new TList(TType.STRUCT, this.messages.size()));
-          for (LogEntry _iter3 : this.messages)
-          {
+          for (LogEntry _iter3 : this.messages) {
             _iter3.write(oprot);
           }
           oprot.writeListEnd();
@@ -366,12 +352,11 @@ public class scribe {
 
   }
 
-  public static class Log_result implements TBase, java.io.Serializable, Cloneable, Comparable<Log_result>   {
+  public static class Log_result implements TBase, java.io.Serializable, Cloneable, Comparable<Log_result> {
     private static final TStruct STRUCT_DESC = new TStruct("Log_result");
-    private static final TField SUCCESS_FIELD_DESC = new TField("success", TType.I32, (short)0);
+    private static final TField SUCCESS_FIELD_DESC = new TField("success", TType.I32, (short) 0);
 
     /**
-     * 
      * @see ResultCode
      */
     public int success;
@@ -382,7 +367,7 @@ public class scribe {
     private BitSet __isset_bit_vector = new BitSet(1);
 
     public static final Map<Integer, FieldMetaData> metaDataMap = Collections.unmodifiableMap(new HashMap<Integer, FieldMetaData>() {{
-      put(SUCCESS, new FieldMetaData("success", TFieldRequirementType.DEFAULT, 
+      put(SUCCESS, new FieldMetaData("success", TFieldRequirementType.DEFAULT,
           new FieldValueMetaData(TType.I32)));
     }});
 
@@ -394,8 +379,7 @@ public class scribe {
     }
 
     public Log_result(
-      int success)
-    {
+        int success) {
       this();
       this.success = success;
       setSuccessIsSet(true);
@@ -420,7 +404,6 @@ public class scribe {
     }
 
     /**
-     * 
      * @see ResultCode
      */
     public int getSuccess() {
@@ -428,7 +411,6 @@ public class scribe {
     }
 
     /**
-     * 
      * @see ResultCode
      */
     public Log_result setSuccess(int success) {
@@ -442,6 +424,7 @@ public class scribe {
     }
 
     // Returns true if field success is set (has been asigned a value) and false otherwise
+
     public boolean isSetSuccess() {
       return __isset_bit_vector.get(__SUCCESS_ISSET_ID);
     }
@@ -452,36 +435,37 @@ public class scribe {
 
     public void setFieldValue(int fieldID, Object value) {
       switch (fieldID) {
-      case SUCCESS:
-        if (value == null) {
-          unsetSuccess();
-        } else {
-          setSuccess((Integer)value);
-        }
-        break;
+        case SUCCESS:
+          if (value == null) {
+            unsetSuccess();
+          } else {
+            setSuccess((Integer) value);
+          }
+          break;
 
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     public Object getFieldValue(int fieldID) {
       switch (fieldID) {
-      case SUCCESS:
-        return getSuccess();
+        case SUCCESS:
+          return getSuccess();
 
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
     // Returns true if field corresponding to fieldID is set (has been asigned a value) and false otherwise
+
     public boolean isSet(int fieldID) {
       switch (fieldID) {
-      case SUCCESS:
-        return isSetSuccess();
-      default:
-        throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
+        case SUCCESS:
+          return isSetSuccess();
+        default:
+          throw new IllegalArgumentException("Field " + fieldID + " doesn't exist!");
       }
     }
 
@@ -490,7 +474,7 @@ public class scribe {
       if (that == null)
         return false;
       if (that instanceof Log_result)
-        return this.equals((Log_result)that);
+        return this.equals((Log_result) that);
       return false;
     }
 
@@ -521,7 +505,7 @@ public class scribe {
       }
 
       int lastComparison = 0;
-      Log_result typedOther = (Log_result)other;
+      Log_result typedOther = (Log_result) other;
 
       lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(isSetSuccess());
       if (lastComparison != 0) {
@@ -537,19 +521,17 @@ public class scribe {
     public void read(TProtocol iprot) throws TException {
       TField field;
       iprot.readStructBegin();
-      while (true)
-      {
+      while (true) {
         field = iprot.readFieldBegin();
-        if (field.type == TType.STOP) { 
+        if (field.type == TType.STOP) {
           break;
         }
-        switch (field.id)
-        {
+        switch (field.id) {
           case SUCCESS:
             if (field.type == TType.I32) {
               this.success = iprot.readI32();
               setSuccessIsSet(true);
-            } else { 
+            } else {
               TProtocolUtil.skip(iprot, field.type);
             }
             break;
@@ -601,7 +583,7 @@ public class scribe {
     public void validate() throws TException {
       // check for required fields
       // check that fields of type enum have valid values
-      if (isSetSuccess() && !ResultCode.VALID_VALUES.contains(success)){
+      if (isSetSuccess() && !ResultCode.VALID_VALUES.contains(success)) {
         throw new TProtocolException("The field 'success' has been assigned the invalid value " + success);
       }
     }
